@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MBTI Personality Quiz</title>
+    <link rel="stylesheet" href="https://use.typekit.net/ytf2tfa.css" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Quiz Start Screen -->
+      <div id="start-screen" class="screen active">
+        <h1>MBTI Personality Quiz</h1>
+        <p>Discover your personality type through this comprehensive quiz!</p>
+        <button id="start-btn" class="btn primary">Start Quiz</button>
+      </div>
+
+      <!-- Quiz Screen -->
+      <div id="quiz-screen" class="screen">
+        <div class="quiz-body">
+          <button
+            id="prev-btn"
+            class="arrow-btn left"
+            disabled
+            aria-label="Previous Question"
+          >
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+              <circle
+                cx="20"
+                cy="20"
+                r="19"
+                stroke="currentColor"
+                stroke-width="2"
+              />
+              <polyline
+                points="24,12 16,20 24,28"
+                stroke="currentColor"
+                stroke-width="2.5"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+
+          <div class="quiz-content">
+            <div class="quiz-header">
+              <div id="progress-circles" class="progress-circles"></div>
+              <span id="question-counter">Question 1 of 15</span>
+            </div>
+            <div class="question-image">
+              <img id="question-img" src="" alt="Question illustration" />
+            </div>
+            <div class="question-text">
+              <h2 id="question-title"></h2>
+            </div>
+
+            <div class="answers-container">
+              <div id="answers-list" class="answers-grid">
+                <!-- Answer options will be populated by JavaScript -->
+              </div>
+            </div>
+          </div>
+
+          <button
+            id="next-btn"
+            class="arrow-btn right"
+            disabled
+            aria-label="Next Question"
+          >
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+              <circle
+                cx="20"
+                cy="20"
+                r="19"
+                stroke="currentColor"
+                stroke-width="2"
+              />
+              <polyline
+                points="16,12 24,20 16,28"
+                stroke="currentColor"
+                stroke-width="2.5"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Results Screen -->
+      <div id="results-screen" class="screen">
+        <h1>Your Personality Type</h1>
+        <div class="result-content">
+          <div class="personality-type">
+            <h2 id="personality-code"></h2>
+          </div>
+          <div id="trait-descriptions" class="traits-row"></div>
+
+          <div class="personality-image">
+            <img
+              id="result-image"
+              src=""
+              alt="Personality result image"
+              style="max-width: 120px; display: block; margin: 0 auto"
+            />
+          </div>
+
+          <div class="personality-scores">
+            <h4>Score Breakdown:</h4>
+            <div id="scores-list" class="scores-container">
+              <!-- Scores will be populated by JavaScript -->
+            </div>
+          </div>
+
+          <button id="restart-btn" class="btn primary">Take Quiz Again</button>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="script.js"></script>
+  </body>
+</html>
