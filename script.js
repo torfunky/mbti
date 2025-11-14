@@ -1,4 +1,5 @@
 import { QUIZ_QUESTIONS, RESULT_OPTIONS } from "./quiz-data.js";
+import { CharacterBuilder } from "./character-builder.js";
 
 class MBTIQuiz {
   constructor() {
@@ -16,12 +17,14 @@ class MBTIQuiz {
     };
 
     this.initializeElements();
+    this.initializeCharacterBuilder();
     this.setupEventListeners();
     this.showStartScreen();
   }
 
   initializeElements() {
     this.startScreen = document.getElementById("start-screen");
+    this.characterBuilderScreen = document.getElementById("character-builder-screen");
     this.quizScreen = document.getElementById("quiz-screen");
     this.resultsScreen = document.getElementById("results-screen");
     this.questionCounter = document.getElementById("question-counter");
@@ -37,8 +40,22 @@ class MBTIQuiz {
     this.restartBtn = document.getElementById("restart-btn");
   }
 
+  initializeCharacterBuilder() {
+    this.characterBuilder = new CharacterBuilder();
+    
+    // Listen for character builder events
+    document.addEventListener('characterBuilder:backToStart', () => {
+      this.showStartScreen();
+    });
+    
+    document.addEventListener('characterBuilder:startQuiz', (event) => {
+      this.userCharacter = event.detail.character;
+      this.startQuiz();
+    });
+  }
+
   setupEventListeners() {
-    this.startBtn.addEventListener("click", () => this.startQuiz());
+    this.startBtn.addEventListener("click", () => this.showCharacterBuilder());
     this.prevBtn.addEventListener("click", () => this.previousQuestion());
     this.nextBtn.addEventListener("click", () => this.nextQuestion());
     this.restartBtn.addEventListener("click", () => this.restartQuiz());
@@ -58,6 +75,12 @@ class MBTIQuiz {
   showStartScreen() {
     this.hideAllScreens();
     this.startScreen.classList.add("active");
+  }
+
+  showCharacterBuilder() {
+    this.hideAllScreens();
+    this.characterBuilderScreen.classList.add("active");
+    this.characterBuilder.show();
   }
 
   showQuizScreen() {
@@ -343,6 +366,11 @@ class MBTIQuiz {
   }
 
   restartQuiz() {
+    // Reset character data
+    if (this.characterBuilder && this.characterBuilder.getCharacter()) {
+      this.characterBuilder.getCharacter().reset();
+    }
+    this.userCharacter = null;
     this.showStartScreen();
   }
 }

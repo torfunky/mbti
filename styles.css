@@ -397,25 +397,32 @@ h1 {
 }
 
 @media (max-width: 900px) {
-  .arrow-btn.left {
-    left: 0;
-  }
-
-  .arrow-btn.right {
-    right: 0;
-  }
-
   .quiz-body {
     min-height: 0;
+    flex-direction: column;
+    position: relative;
   }
+  
   .quiz-content {
     margin: 0;
     padding: 24px 4px;
+    width: 100%;
   }
+  
   .arrow-btn.left,
   .arrow-btn.right {
-    left: 0;
-    right: 0;
+    position: absolute;
+    bottom: -300px;
+  }
+  
+  .arrow-btn.left {
+    left: 50%;
+    margin-left: -80px;
+  }
+  
+  .arrow-btn.right {
+    right: 50%;
+    margin-right: -80px;
   }
 }
 
