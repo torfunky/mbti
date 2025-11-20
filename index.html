@@ -37,7 +37,6 @@
             <!-- Character Display -->
             <div class="character-preview">
               <div id="character-display" class="character-display">
-                <!-- Character preview will be rendered here -->
               </div>
             </div>
             
@@ -58,32 +57,11 @@
 
       <!-- Quiz Screen -->
       <div id="quiz-screen" class="screen">
+        <div class="chair-decoration">
+          <img src="other-assets/chair.png" alt="" class="static-chair">
+          <div id="chair-character" class="chair-character"></div>
+        </div>
         <div class="quiz-body">
-          <button
-            id="prev-btn"
-            class="arrow-btn left"
-            disabled
-            aria-label="Previous Question"
-          >
-            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-              <circle
-                cx="20"
-                cy="20"
-                r="19"
-                stroke="currentColor"
-                stroke-width="2"
-              />
-              <polyline
-                points="24,12 16,20 24,28"
-                stroke="currentColor"
-                stroke-width="2.5"
-                fill="none"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </button>
-
           <div class="quiz-content">
             <div class="quiz-header">
               <div id="progress-circles" class="progress-circles"></div>
@@ -98,35 +76,28 @@
 
             <div class="answers-container">
               <div id="answers-list" class="answers-grid">
-                <!-- Answer options will be populated by JavaScript -->
               </div>
             </div>
-          </div>
 
-          <button
-            id="next-btn"
-            class="arrow-btn right"
-            disabled
-            aria-label="Next Question"
-          >
-            <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-              <circle
-                cx="20"
-                cy="20"
-                r="19"
-                stroke="currentColor"
-                stroke-width="2"
-              />
-              <polyline
-                points="16,12 24,20 16,28"
-                stroke="currentColor"
-                stroke-width="2.5"
-                fill="none"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-          </button>
+            <div class="quiz-navigation">
+              <button
+                id="prev-btn"
+                class="arrow-btn"
+                disabled
+                aria-label="Previous Question"
+              >
+                Back
+              </button>
+              <button
+                id="next-btn"
+                class="arrow-btn"
+                disabled
+                aria-label="Next Question"
+              >
+                Next
+              </button>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -151,7 +122,6 @@
           <div class="personality-scores">
             <h4>Score Breakdown:</h4>
             <div id="scores-list" class="scores-container">
-              <!-- Scores will be populated by JavaScript -->
             </div>
           </div>
 

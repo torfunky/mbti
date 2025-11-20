@@ -71,27 +71,30 @@
 }
 
 .feature-arrow {
-  background: var(--key-color, #222);
-  color: white;
-  border: none;
   width: 50px;
   height: 50px;
-  border-radius: 50%;
-  font-size: 1.5rem;
+  border: 2px dashed var(--key-color-light, #ccc);
+  border-radius: 0;
+  background: transparent;
+  color: var(--key-color, #333);
+  font-size: 1.2rem;
+  font-family: "adelle-mono", "Adelle Mono", "SF Mono", "Monaco", "Inconsolata", "Fira Code", monospace;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
 }
 
 .feature-arrow:hover {
-  background: var(--key-color-dark, #111);
-  transform: scale(1.05);
+  border-color: var(--key-color, #333);
+  color: var(--key-color, #333);
 }
 
 .feature-arrow:active {
-  transform: scale(0.95);
+  border-color: var(--key-color, #333);
+  background: var(--key-color, #333);
+  color: var(--main-bg, #fff);
 }
 
 /* Character Preview Section */

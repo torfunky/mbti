@@ -1,5 +1,6 @@
 import { QUIZ_QUESTIONS, RESULT_OPTIONS } from "./quiz-data.js";
 import { CharacterBuilder } from "./character-builder.js";
+import { CHARACTER_OPTIONS } from "./character.js";
 
 class MBTIQuiz {
   constructor() {
@@ -38,6 +39,7 @@ class MBTIQuiz {
     this.scoresList = document.getElementById("scores-list");
     this.startBtn = document.getElementById("start-btn");
     this.restartBtn = document.getElementById("restart-btn");
+    this.chairCharacter = document.getElementById("chair-character");
   }
 
   initializeCharacterBuilder() {
@@ -86,6 +88,46 @@ class MBTIQuiz {
   showQuizScreen() {
     this.hideAllScreens();
     this.quizScreen.classList.add("active");
+    this.displayCharacterOnChair();
+  }
+
+  displayCharacterOnChair() {
+    if (!this.chairCharacter || !this.characterBuilder) {
+      return;
+    }
+
+    const character = this.characterBuilder.character;
+    const bodyType = character.getProperty('bodyType');
+    const feature01Type = character.getProperty('feature01Type');
+    const feature02Type = character.getProperty('feature02Type');
+    
+    const bodyOption = CHARACTER_OPTIONS.bodyTypes[bodyType];
+    const feature01Option = CHARACTER_OPTIONS.feature01Types[feature01Type];
+    const feature02Option = CHARACTER_OPTIONS.feature02Types[feature02Type];
+    
+    // Clear and render character directly
+    this.chairCharacter.innerHTML = '';
+    
+    if (bodyOption) {
+      const bodyImg = document.createElement('img');
+      bodyImg.src = bodyOption.image;
+      bodyImg.className = 'character-layer body';
+      this.chairCharacter.appendChild(bodyImg);
+    }
+    
+    if (feature01Option) {
+      const feature01Img = document.createElement('img');
+      feature01Img.src = feature01Option.image;
+      feature01Img.className = 'character-layer feature01';
+      this.chairCharacter.appendChild(feature01Img);
+    }
+    
+    if (feature02Option) {
+      const feature02Img = document.createElement('img');
+      feature02Img.src = feature02Option.image;
+      feature02Img.className = 'character-layer feature02';
+      this.chairCharacter.appendChild(feature02Img);
+    }
   }
 
   showResultsScreen() {
@@ -194,9 +236,7 @@ class MBTIQuiz {
     // Update question content
     this.questionTitle.textContent = question.question;
     this.questionImg.src = question.image;
-    this.questionImg.alt = `Illustration for question ${
-      this.currentQuestionIndex + 1
-    }`;
+    this.questionImg.alt = "";
 
     // Clear previous answers
     this.answersList.innerHTML = "";
