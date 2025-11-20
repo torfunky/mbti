@@ -9,6 +9,17 @@
     <link rel="stylesheet" href="character-builder.css" />
   </head>
   <body>
+    <!-- Background illustration container -->
+    <div class="background-illustration">
+      <!-- Placeholder for future static background illustration -->
+      <div class="bg-placeholder">
+        <div class="bg-element bg-element-1"></div>
+        <div class="bg-element bg-element-2"></div>
+        <div class="bg-element bg-element-3"></div>
+        <div class="bg-text">Background Illustration Area</div>
+      </div>
+    </div>
+
     <div class="container">
       <!-- Quiz Start Screen -->
       <div id="start-screen" class="screen active">
@@ -21,33 +32,52 @@
       <div id="character-builder-screen" class="screen">
         <div class="character-builder-container">
           <div class="character-name-section">
-            <h1>my name is <input type="text" id="character-name-input" class="name-input" maxlength="10"></h1>
+            <h1>
+              my name is
+              <input
+                type="text"
+                id="character-name-input"
+                class="name-input"
+                maxlength="10"
+              />
+            </h1>
             <p>subtitle</p>
           </div>
-          
+
           <!-- Character Builder Interface -->
           <div class="character-builder-interface">
             <!-- Left Arrow Controls -->
             <div class="arrow-controls left">
-              <button class="feature-arrow prev" data-feature="bodyType">‹</button>
-              <button class="feature-arrow prev" data-feature="feature01Type">‹</button>
-              <button class="feature-arrow prev" data-feature="feature02Type">‹</button>
+              <button class="feature-arrow prev" data-feature="bodyType">
+                ‹
+              </button>
+              <button class="feature-arrow prev" data-feature="feature01Type">
+                ‹
+              </button>
+              <button class="feature-arrow prev" data-feature="feature02Type">
+                ‹
+              </button>
             </div>
-            
+
             <!-- Character Display -->
             <div class="character-preview">
-              <div id="character-display" class="character-display">
-              </div>
+              <div id="character-display" class="character-display"></div>
             </div>
-            
+
             <!-- Right Arrow Controls -->
             <div class="arrow-controls right">
-              <button class="feature-arrow next" data-feature="bodyType">›</button>
-              <button class="feature-arrow next" data-feature="feature01Type">›</button>
-              <button class="feature-arrow next" data-feature="feature02Type">›</button>
+              <button class="feature-arrow next" data-feature="bodyType">
+                ›
+              </button>
+              <button class="feature-arrow next" data-feature="feature01Type">
+                ›
+              </button>
+              <button class="feature-arrow next" data-feature="feature02Type">
+                ›
+              </button>
             </div>
           </div>
-          
+
           <div class="character-builder-actions">
             <button id="back-to-start-btn" class="btn secondary">Back</button>
             <button id="start-quiz-btn" class="btn primary">Start Quiz</button>
@@ -57,10 +87,6 @@
 
       <!-- Quiz Screen -->
       <div id="quiz-screen" class="screen">
-        <div class="chair-decoration">
-          <img src="other-assets/chair.png" alt="" class="static-chair">
-          <div id="chair-character" class="chair-character"></div>
-        </div>
         <div class="quiz-body">
           <div class="quiz-content">
             <div class="quiz-header">
@@ -74,9 +100,14 @@
               <h2 id="question-title"></h2>
             </div>
 
+            <!-- Character centered under question -->
+            <div class="character-section">
+              <img src="other-assets/chair.png" alt="" class="static-chair" />
+              <div id="chair-character" class="chair-character"></div>
+            </div>
+
             <div class="answers-container">
-              <div id="answers-list" class="answers-grid">
-              </div>
+              <div id="answers-list" class="answers-grid"></div>
             </div>
 
             <div class="quiz-navigation">
@@ -103,26 +134,17 @@
 
       <!-- Results Screen -->
       <div id="results-screen" class="screen">
-        <h1>Your Personality Type</h1>
         <div class="result-content">
           <div class="personality-type">
             <h2 id="personality-code"></h2>
           </div>
-          <div id="trait-descriptions" class="traits-row"></div>
 
           <div class="personality-image">
-            <img
-              id="result-image"
-              src=""
-              alt="Personality result image"
-              style="max-width: 120px; display: block; margin: 0 auto"
-            />
+            <img id="result-image" src="" alt="Personality result image" />
           </div>
 
           <div class="personality-scores">
-            <h4>Score Breakdown:</h4>
-            <div id="scores-list" class="scores-container">
-            </div>
+            <div id="scores-list" class="pie-charts-container"></div>
           </div>
 
           <button id="restart-btn" class="btn primary">Take Quiz Again</button>

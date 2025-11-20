@@ -1,4 +1,4 @@
-import { QUIZ_QUESTIONS, RESULT_OPTIONS } from "./quiz-data.js";
+import { QUIZ_QUESTIONS, RESULT_OPTIONS, MBTI_TYPES } from "./quiz-data.js";
 import { CharacterBuilder } from "./character-builder.js";
 import { CHARACTER_OPTIONS } from "./character.js";
 
@@ -25,7 +25,9 @@ class MBTIQuiz {
 
   initializeElements() {
     this.startScreen = document.getElementById("start-screen");
-    this.characterBuilderScreen = document.getElementById("character-builder-screen");
+    this.characterBuilderScreen = document.getElementById(
+      "character-builder-screen"
+    );
     this.quizScreen = document.getElementById("quiz-screen");
     this.resultsScreen = document.getElementById("results-screen");
     this.questionCounter = document.getElementById("question-counter");
@@ -44,13 +46,13 @@ class MBTIQuiz {
 
   initializeCharacterBuilder() {
     this.characterBuilder = new CharacterBuilder();
-    
+
     // Listen for character builder events
-    document.addEventListener('characterBuilder:backToStart', () => {
+    document.addEventListener("characterBuilder:backToStart", () => {
       this.showStartScreen();
     });
-    
-    document.addEventListener('characterBuilder:startQuiz', (event) => {
+
+    document.addEventListener("characterBuilder:startQuiz", (event) => {
       this.userCharacter = event.detail.character;
       this.startQuiz();
     });
@@ -97,35 +99,35 @@ class MBTIQuiz {
     }
 
     const character = this.characterBuilder.character;
-    const bodyType = character.getProperty('bodyType');
-    const feature01Type = character.getProperty('feature01Type');
-    const feature02Type = character.getProperty('feature02Type');
-    
+    const bodyType = character.getProperty("bodyType");
+    const feature01Type = character.getProperty("feature01Type");
+    const feature02Type = character.getProperty("feature02Type");
+
     const bodyOption = CHARACTER_OPTIONS.bodyTypes[bodyType];
     const feature01Option = CHARACTER_OPTIONS.feature01Types[feature01Type];
     const feature02Option = CHARACTER_OPTIONS.feature02Types[feature02Type];
-    
+
     // Clear and render character directly
-    this.chairCharacter.innerHTML = '';
-    
+    this.chairCharacter.innerHTML = "";
+
     if (bodyOption) {
-      const bodyImg = document.createElement('img');
+      const bodyImg = document.createElement("img");
       bodyImg.src = bodyOption.image;
-      bodyImg.className = 'character-layer body';
+      bodyImg.className = "character-layer body";
       this.chairCharacter.appendChild(bodyImg);
     }
-    
+
     if (feature01Option) {
-      const feature01Img = document.createElement('img');
+      const feature01Img = document.createElement("img");
       feature01Img.src = feature01Option.image;
-      feature01Img.className = 'character-layer feature01';
+      feature01Img.className = "character-layer feature01";
       this.chairCharacter.appendChild(feature01Img);
     }
-    
+
     if (feature02Option) {
-      const feature02Img = document.createElement('img');
+      const feature02Img = document.createElement("img");
       feature02Img.src = feature02Option.image;
-      feature02Img.className = 'character-layer feature02';
+      feature02Img.className = "character-layer feature02";
       this.chairCharacter.appendChild(feature02Img);
     }
   }
@@ -329,7 +331,8 @@ class MBTIQuiz {
     const personalityType = this.getPersonalityType();
 
     // Display personality type
-    this.personalityCode.textContent = personalityType;
+    this.personalityCode.textContent =
+      MBTI_TYPES[personalityType] || personalityType;
 
     // Create personality name from individual traits
     const traits = [
@@ -349,15 +352,6 @@ class MBTIQuiz {
     } else {
       resultImage.style.display = "none";
     }
-
-    // Display trait descriptions under the section where each letter is shown
-    const traitDescriptions = document.getElementById("trait-descriptions");
-    traitDescriptions.innerHTML = traits
-      .map(
-        (trait) =>
-          `<div class=\"trait-card\"><div class=\"trait-label\" tabindex=\"0\">${trait.label}</div><div class=\"trait-desc\">${trait.description}</div></div>`
-      )
-      .join("");
 
     // Display score breakdown
     this.displayScoreBreakdown();
@@ -379,29 +373,80 @@ class MBTIQuiz {
     ];
 
     scorePairs.forEach(([trait1, trait2]) => {
-      const scoreElement = document.createElement("div");
-      scoreElement.className = "score-item";
+      const chartElement = document.createElement("div");
+      chartElement.className = "pie-chart-item";
 
       const total = this.scores[trait1] + this.scores[trait2];
       const percentage1 =
         total > 0 ? Math.round((this.scores[trait1] / total) * 100) : 50;
       const percentage2 = 100 - percentage1;
 
-      scoreElement.innerHTML = `
-        <div class="score-label">
-          <span>${RESULT_OPTIONS[trait1].label} vs ${RESULT_OPTIONS[trait2].label}</span>
-        </div>
-        <div class="score-bar">
-          <div class="score-fill" style="width: ${percentage1}%"></div>
-          <div class="score-fill-secondary" style="width: ${percentage2}%"></div>
-        </div>
-        <div class="score-percentages">
-          <span>${percentage1}% ${RESULT_OPTIONS[trait1].label}</span>
-          <span>${percentage2}% ${RESULT_OPTIONS[trait2].label}</span>
+      // Determine dominant trait and percentage
+      const dominantTrait = percentage1 >= percentage2 ? trait1 : trait2;
+      const dominantPercentage = Math.max(percentage1, percentage2);
+      const anglePercentage = (dominantPercentage / 100) * 360;
+
+      const angle1 = (percentage1 / 100) * 360;
+
+      // Calculate center angles for each section
+      const trait1CenterAngle = angle1 / 2; // Center of first section
+      const trait2CenterAngle = angle1 + (360 - angle1) / 2; // Center of second section
+
+      // Convert to radians and adjust so 0° is at top
+      const trait1Rad = ((trait1CenterAngle - 90) * Math.PI) / 180;
+      const trait2Rad = ((trait2CenterAngle - 90) * Math.PI) / 180;
+
+      // Calculate line start points (edge of pie chart)
+      const pieRadius = 38; // Pie chart radius minus border
+      const lineLength = 20;
+      const labelDistance = 25;
+
+      const trait1StartX = Math.cos(trait1Rad) * pieRadius;
+      const trait1StartY = Math.sin(trait1Rad) * pieRadius;
+      const trait1EndX = Math.cos(trait1Rad) * (pieRadius + lineLength);
+      const trait1EndY = Math.sin(trait1Rad) * (pieRadius + lineLength);
+      const trait1LabelX = Math.cos(trait1Rad) * (pieRadius + labelDistance);
+      const trait1LabelY = Math.sin(trait1Rad) * (pieRadius + labelDistance);
+
+      const trait2StartX = Math.cos(trait2Rad) * pieRadius;
+      const trait2StartY = Math.sin(trait2Rad) * pieRadius;
+      const trait2EndX = Math.cos(trait2Rad) * (pieRadius + lineLength);
+      const trait2EndY = Math.sin(trait2Rad) * (pieRadius + lineLength);
+      const trait2LabelX = Math.cos(trait2Rad) * (pieRadius + labelDistance);
+      const trait2LabelY = Math.sin(trait2Rad) * (pieRadius + labelDistance);
+
+      chartElement.innerHTML = `
+        <div class="pie-chart-wrapper">
+          <div class="pie-chart" 
+               style="--percentage1-angle: ${angle1}deg;">
+          </div>
+          <svg class="pie-lines" width="140" height="140" style="position: absolute; top: 0; left: 0; pointer-events: none;">
+            <line x1="${70 + trait1StartX}" y1="${70 + trait1StartY}" 
+                  x2="${70 + trait1EndX}" y2="${70 + trait1EndY}" 
+                  stroke="var(--key-color)" stroke-width="1.5"/>
+            <line x1="${70 + trait2StartX}" y1="${70 + trait2StartY}" 
+                  x2="${70 + trait2EndX}" y2="${70 + trait2EndY}" 
+                  stroke="var(--key-color)" stroke-width="1.5"/>
+          </svg>
+          <div class="pie-chart-labels">
+            <div class="pie-label trait1" style="
+              left: ${70 + trait1LabelX}px; 
+              top: ${70 + trait1LabelY}px;
+              transform: translate(-50%, -50%);
+            ">
+              ${percentage1}% ${RESULT_OPTIONS[trait1].label}
+            </div>
+            <div class="pie-label trait2" style="
+              left: ${70 + trait2LabelX}px; 
+              top: ${70 + trait2LabelY}px;
+              transform: translate(-50%, -50%);
+            ">
+              ${percentage2}% ${RESULT_OPTIONS[trait2].label}
+            </div>
+          </div>
         </div>
       `;
-
-      this.scoresList.appendChild(scoreElement);
+      this.scoresList.appendChild(chartElement);
     });
   }
 

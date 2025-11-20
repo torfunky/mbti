@@ -13,7 +13,7 @@ export const QUIZ_QUESTIONS = [
         scores: { I: 1, N: 1 },
       },
       {
-        text: "Still in bed, scrolling aimlessly on SNS",
+        text: "Still in bed, scrolling aimlessly on social media",
         scores: { P: 1 },
       },
       {
@@ -63,7 +63,7 @@ export const QUIZ_QUESTIONS = [
         scores: { J: 1, E: 1 },
       },
       {
-        text: "Receiving gifts. I like seeing something and thinking of someone",
+        text: "Giving gifts. I like seeing something and thinking of someone",
         scores: { N: 1 },
       },
     ],
@@ -171,7 +171,7 @@ export const QUIZ_QUESTIONS = [
         scores: { E: 1, N: 1 },
       },
       {
-        text: "Calm observant and thoughtful",
+        text: "Calm, observant and thoughtful",
         scores: { I: 1, T: 1 },
       },
       {
@@ -347,8 +347,6 @@ export const QUIZ_QUESTIONS = [
   },
 ];
 
-// ...existing code...
-
 export const RESULT_OPTIONS = {
   E: {
     label: "Extraversion",
@@ -398,4 +396,23 @@ export const RESULT_OPTIONS = {
     description:
       "You go with the flow. You are curious. You are always ready for the next adventure. You prefer spontaneity over stringent schedules. You like a variety of options over conclusions. You like to keep things fresh, fun, and full of surprises. ",
   },
+};
+
+export const MBTI_TYPES = {
+  ISTJ: { label: "the Logistician", compatible: "ISTJ, ISFJ" },
+  ISFJ: { label: "the Defender", compatible: "ISTJ, ISFJ" },
+  INFJ: { label: "the Advocate", compatible: "INFJ, INTJ" },
+  INTJ: { label: "the Architect", compatible: "INFJ, INTJ" },
+  ISTP: { label: "the Virtuoso" },
+  ISFP: { label: "the Adventurer" },
+  INFP: { label: "the Mediator" },
+  INTP: { label: "the Thinker" },
+  ESTP: { label: "the Entrepreneur" },
+  ESFP: { label: "the Entertainer" },
+  ENFP: { label: "the Campaigner", compatible: "ENFJ, ENFP" },
+  ENTP: { label: "the Debater" },
+  ESTJ: { label: "the Executive" },
+  ESFJ: { label: "the Consul" },
+  ENFJ: { label: "the Protagonist", compatible: "ENFP" },
+  ENTJ: { label: "the Vanguard", compatible: "ENTJ" },
 };
