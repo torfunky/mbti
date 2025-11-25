@@ -477,6 +477,9 @@ h6 {
 
 .personality-image {
   margin: 16px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .personality-image img {
@@ -487,8 +490,90 @@ h6 {
   opacity: 0.8;
 }
 
+.user-character-display {
+  width: 120px;
+  height: 120px;
+  position: relative;
+  border-radius: 50%;
+  border: 3px solid var(--key-color);
+  background: var(--trait-bg);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.user-character-display .character-layer {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  width: 280% !important;
+  height: 280% !important;
+  object-fit: contain !important;
+}
+
 .personality-scores {
-  margin-bottom: 32px;
+  margin-bottom: 16px;
+}
+
+/* Compatibility section */
+.compatibility-section {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  margin-bottom: 20px;
+  margin-top: -8px;
+  max-width: 100%;
+  width: 100%;
+  justify-content: center;
+}
+
+.compatibility-item {
+  text-align: center;
+  padding: 10px;
+  background: var(--trait-bg);
+  border-radius: 8px;
+  border: 1px solid var(--key-color-light);
+  min-height: 160px;
+  width: 160px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+}
+
+.compatibility-character {
+  width: 80px;
+  height: 80px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.compatibility-character .character-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.compatibility-item h3 {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--key-color);
+  margin-bottom: 6px;
+}
+
+.compatibility-item p {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--key-color);
+  margin: 0;
 }
 
 /* Center restart button */
@@ -508,7 +593,7 @@ h6 {
 .pie-charts-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 20px;
+  gap: 12px;
   max-width: 380px;
   margin: 0 auto;
   padding: 0 8px;
@@ -521,8 +606,8 @@ h6 {
   align-items: center;
   text-align: center;
   position: relative;
-  padding: 10px 4px;
-  min-height: 180px;
+  padding: 0px 4px;
+  min-height: 160px;
 }
 
 .pie-chart-item .pie-chart-label {

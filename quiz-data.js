@@ -350,69 +350,156 @@ export const QUIZ_QUESTIONS = [
 export const RESULT_OPTIONS = {
   E: {
     label: "Extraversion",
-    image: "E.png",
     description:
       "You love connecting with others. Your energy flows when you are surrounded by other people and you enjoy being in environments filled with laughter and good energy. You recharge with others. The world is your oyster and you are happiest when you are apart of the action.",
   },
   I: {
     label: "Introversion",
-    image: "I.png",
     description:
       "Your inner world is profound. You are full of thoughts. feelings and imagination. You prefer the quiet moments over noise, and the soluitute doesn't drain you. You may notice small things others might miss. You value moments of calm and reflection.",
   },
   S: {
     label: "Sensing",
-    image: "S.png",
     description:
       "You are grounded and observant. You trust what you can see, touch, and experience. You have been described as detail-oriented and practical. You find comfort with the real and the familiar. You like working with tangile things. ",
   },
   N: {
     label: "Intuition",
-    image: "N.png",
     description:
       "Your head is 'in the clouds'. You see possibilities everywhere, connecting ideas other might not even notice. You think large and you dream boldy. You look beyond 'what is' and imagine 'what could be'.  ",
   },
   T: {
     label: "Thinking",
-    image: "T.png",
     description:
       "You value clarity, fairness, and logic. When things get emotional, you are the cool head of the situation. You can untangle a mess with reason and precision. You care deeply, and it manifests by solving and fixing rather than comfort. You are a truth seeker who may sometimes have a heart of steel.",
   },
   F: {
     label: "Feeling",
-    image: "F.png",
     description:
       "Your emotional compass points towards feelings. You look to people and values and make decisions with emapthy and intuition. You do what feels right. Harmony matters a lot to you, because you care about how others feel. Your kindness is unmatched. ",
   },
   J: {
     label: "Judging",
-    image: "J.png",
     description:
       "You enjoy a clear plan and a decisive list. There is a satisfaction you feel when checking things off a list. Structure helps you breathe, it helps you make sense of a busy world. You have been described as dependable, organized, and future oriented. You also appreciate when your effort brings a little bit of peace to others.",
   },
   P: {
     label: "Perceiving",
-    image: "P.png",
     description:
       "You go with the flow. You are curious. You are always ready for the next adventure. You prefer spontaneity over stringent schedules. You like a variety of options over conclusions. You like to keep things fresh, fun, and full of surprises. ",
   },
 };
 
 export const MBTI_TYPES = {
-  ISTJ: { label: "the Logistician", compatible: "ISTJ, ISFJ" },
-  ISFJ: { label: "the Defender", compatible: "ISTJ, ISFJ" },
-  INFJ: { label: "the Advocate", compatible: "INFJ, INTJ" },
-  INTJ: { label: "the Architect", compatible: "INFJ, INTJ" },
-  ISTP: { label: "the Virtuoso" },
-  ISFP: { label: "the Adventurer" },
-  INFP: { label: "the Mediator" },
-  INTP: { label: "the Thinker" },
-  ESTP: { label: "the Entrepreneur" },
-  ESFP: { label: "the Entertainer" },
-  ENFP: { label: "the Campaigner", compatible: "ENFJ, ENFP" },
-  ENTP: { label: "the Debater" },
-  ESTJ: { label: "the Executive" },
-  ESFJ: { label: "the Consul" },
-  ENFJ: { label: "the Protagonist", compatible: "ENFP" },
-  ENTJ: { label: "the Vanguard", compatible: "ENTJ" },
+  ISTJ: {
+    label: "the Logistician",
+    compatible: "ISTP, 70%",
+    incompatible: "ENFP, 18%",
+    image: "ISTJ.png",
+  },
+
+  ISFJ: {
+    label: "the Defender",
+    compatible: "INFJ, 85%",
+    incompatible: "ENFP, 12%",
+    image: "ISFJ.png",
+  },
+
+  INFJ: {
+    label: "the Advocate",
+    compatible: "INFJ, 86%",
+    incompatible: "ESTP, 5%",
+    image: "INFJ.png",
+  },
+
+  INTJ: {
+    label: "the Architect",
+    compatible: "INTP, 89%",
+    incompatible: "ESFP, 22%",
+    image: "INTJ.png",
+  },
+
+  ISTP: {
+    label: "the Virtuoso",
+    compatible: "ISTJ, 62%",
+    incompatible: "ENFJ, 9%",
+    image: "ISTP.png",
+  },
+
+  ISFP: {
+    label: "the Adventurer",
+    compatible: "ISFJ, 76%",
+    incompatible: "ENTJ, 6%",
+    image: "ISFP.png",
+  },
+
+  INFP: {
+    label: "the Mediator",
+    compatible: "INFJ, 85%",
+    incompatible: "ESTJ, 14%",
+    image: "INFP.png",
+  },
+
+  INTP: {
+    label: "the Thinker",
+    compatible: "ENTJ, 96%",
+    incompatible: "ESFJ, 39%",
+    image: "INTP.png",
+  },
+
+  ESTP: {
+    label: "the Entrepreneur",
+    compatible: "ISTP, 62%",
+    incompatible: "INFJ, 5%",
+    image: "ESTP.png",
+  },
+
+  ESFP: {
+    label: "the Entertainer",
+    compatible: "ENFP, 93%",
+    incompatible: "INTJ, 22%",
+    image: "ESFP.png",
+  },
+
+  ENFP: {
+    label: "the Campaigner",
+    compatible: "ENTJ, 97%",
+    incompatible: "ISTP, 14%",
+    image: "ENFP.png",
+  },
+
+  ENTP: {
+    label: "the Debater",
+    compatible: "ENFP, 94%",
+    incompatible: "ISTJ, 11%",
+    image: "ENTP.png",
+  },
+
+  ESTJ: {
+    label: "the Executive",
+    compatible: "ISTJ, 79%",
+    incompatible: "INFP, 14%",
+    image: "ESTJ.png",
+  },
+
+  ESFJ: {
+    label: "the Consul",
+    compatible: "ENFP, 93%",
+    incompatible: "ISTP, 19%",
+    image: "ESFJ.png",
+  },
+
+  ENFJ: {
+    label: "the Protagonist",
+    compatible: "ENFP, 91%",
+    incompatible: "ISTP, 9%",
+    image: "ENFJ.png",
+  },
+
+  ENTJ: {
+    label: "the Vanguard",
+    compatible: "INTJ, 97%",
+    incompatible: "INFP, 24%",
+    image: "ENTJ.png",
+  },
 };

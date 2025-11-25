@@ -1,6 +1,7 @@
 import { QUIZ_QUESTIONS, RESULT_OPTIONS, MBTI_TYPES } from "./quiz-data.js";
 import { CharacterBuilder } from "./character-builder.js";
 import { CHARACTER_OPTIONS } from "./character.js";
+import { CharacterUtils } from "./character-utils.js";
 
 class MBTIQuiz {
   constructor() {
@@ -332,7 +333,7 @@ class MBTIQuiz {
 
     // Display personality type
     this.personalityCode.textContent =
-      MBTI_TYPES[personalityType] || personalityType;
+      MBTI_TYPES[personalityType]?.label || personalityType;
 
     // Create personality name from individual traits
     const traits = [
@@ -342,15 +343,85 @@ class MBTIQuiz {
       this.scores.J >= this.scores.P ? RESULT_OPTIONS.J : RESULT_OPTIONS.P,
     ];
 
-    // Display result image for the main personality type
-    const resultImage = document.getElementById("result-image");
-    const mainTrait = personalityType[0];
-    if (RESULT_OPTIONS[mainTrait] && RESULT_OPTIONS[mainTrait].image) {
-      resultImage.src = RESULT_OPTIONS[mainTrait].image;
-      resultImage.alt = `${RESULT_OPTIONS[mainTrait].label} result image`;
-      resultImage.style.display = "block";
+    // Display user's character in results
+    if (this.userCharacter) {
+      let userBodyType = 0;
+      let userFeature01Type = 0;
+      let userFeature02Type = 0;
+
+      if (typeof this.userCharacter.getProperty === "function") {
+        userBodyType = this.userCharacter.getProperty("bodyType");
+        userFeature01Type = this.userCharacter.getProperty("feature01Type");
+        userFeature02Type = this.userCharacter.getProperty("feature02Type");
+      } else if (this.userCharacter.bodyType !== undefined) {
+        userBodyType = this.userCharacter.bodyType;
+        userFeature01Type = this.userCharacter.feature01Type;
+        userFeature02Type = this.userCharacter.feature02Type;
+      } else if (this.userCharacter.data) {
+        userBodyType = this.userCharacter.data.bodyType;
+        userFeature01Type = this.userCharacter.data.feature01Type;
+        userFeature02Type = this.userCharacter.data.feature02Type;
+      }
+
+      const userCharacterData = {
+        bodyType: userBodyType,
+        feature01Type: userFeature01Type,
+        feature02Type: userFeature02Type,
+      };
+
+      CharacterUtils.renderCharacterInContainer(
+        "user-character-display",
+        userCharacterData
+      );
+    }
+
+    // Display compatibility information
+    const compatibleElement = document.getElementById("compatible-type");
+    const incompatibleElement = document.getElementById("incompatible-type");
+
+    if (MBTI_TYPES[personalityType]?.compatible) {
+      // Remove percentage by splitting on comma and taking first part
+      const compatibleType =
+        MBTI_TYPES[personalityType].compatible.split(",")[0];
+      // Get the label from MBTI_TYPES if it exists
+      const compatibleLabel =
+        MBTI_TYPES[compatibleType]?.label || compatibleType;
+      compatibleElement.textContent = compatibleLabel;
     } else {
-      resultImage.style.display = "none";
+      compatibleElement.textContent = "Not available";
+    }
+
+    if (MBTI_TYPES[personalityType]?.incompatible) {
+      // Remove percentage by splitting on comma and taking first part
+      const incompatibleType =
+        MBTI_TYPES[personalityType].incompatible.split(",")[0];
+      // Get the label from MBTI_TYPES if it exists
+      const incompatibleLabel =
+        MBTI_TYPES[incompatibleType]?.label || incompatibleType;
+      incompatibleElement.textContent = incompatibleLabel;
+    } else {
+      incompatibleElement.textContent = "Not available";
+    }
+
+    // Generate random characters for compatibility boxes
+    try {
+      // Get user's body type - handle different possible userCharacter formats
+      let userBodyType = 0;
+      if (this.userCharacter) {
+        if (typeof this.userCharacter.getProperty === "function") {
+          userBodyType = this.userCharacter.getProperty("bodyType");
+        } else if (this.userCharacter.bodyType !== undefined) {
+          userBodyType = this.userCharacter.bodyType;
+        } else if (
+          this.userCharacter.data &&
+          this.userCharacter.data.bodyType !== undefined
+        ) {
+          userBodyType = this.userCharacter.data.bodyType;
+        }
+      }
+      CharacterUtils.generateCompatibilityCharacters(userBodyType);
+    } catch (error) {
+      console.error("Error generating compatibility characters:", error);
     }
 
     // Display score breakdown
@@ -359,8 +430,6 @@ class MBTIQuiz {
     // Show results screen
     this.showResultsScreen();
   }
-
-  // displayTraitBreakdown removed: no longer needed
 
   displayScoreBreakdown() {
     this.scoresList.innerHTML = "";
@@ -398,22 +467,26 @@ class MBTIQuiz {
 
       // Calculate line start points (edge of pie chart)
       const pieRadius = 38; // Pie chart radius minus border
-      const lineLength = 20;
-      const labelDistance = 25;
 
       const trait1StartX = Math.cos(trait1Rad) * pieRadius;
       const trait1StartY = Math.sin(trait1Rad) * pieRadius;
-      const trait1EndX = Math.cos(trait1Rad) * (pieRadius + lineLength);
-      const trait1EndY = Math.sin(trait1Rad) * (pieRadius + lineLength);
-      const trait1LabelX = Math.cos(trait1Rad) * (pieRadius + labelDistance);
-      const trait1LabelY = Math.sin(trait1Rad) * (pieRadius + labelDistance);
-
       const trait2StartX = Math.cos(trait2Rad) * pieRadius;
       const trait2StartY = Math.sin(trait2Rad) * pieRadius;
-      const trait2EndX = Math.cos(trait2Rad) * (pieRadius + lineLength);
-      const trait2EndY = Math.sin(trait2Rad) * (pieRadius + lineLength);
-      const trait2LabelX = Math.cos(trait2Rad) * (pieRadius + labelDistance);
-      const trait2LabelY = Math.sin(trait2Rad) * (pieRadius + labelDistance);
+
+      // Simple flip-flop positioning - always separate labels vertically
+      const verticalOffset = 45; // Distance from center
+
+      // Always position trait1 above center, trait2 below center
+      let trait1LabelX = Math.cos(trait1Rad) * (pieRadius + 25);
+      let trait1LabelY = -verticalOffset; // Above pie chart
+      let trait2LabelX = Math.cos(trait2Rad) * (pieRadius + 25);
+      let trait2LabelY = verticalOffset; // Below pie chart
+
+      // Calculate line end points to connect pie edge to labels accurately
+      const trait1EndX = trait1LabelX - Math.cos(trait1Rad) * 8; // 8px from label
+      const trait1EndY = trait1LabelY - Math.sin(trait1Rad) * 8;
+      const trait2EndX = trait2LabelX - Math.cos(trait2Rad) * 8; // 8px from label
+      const trait2EndY = trait2LabelY - Math.sin(trait2Rad) * 8;
 
       chartElement.innerHTML = `
         <div class="pie-chart-wrapper">
