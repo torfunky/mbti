@@ -473,20 +473,77 @@ class MBTIQuiz {
       const trait2StartX = Math.cos(trait2Rad) * pieRadius;
       const trait2StartY = Math.sin(trait2Rad) * pieRadius;
 
-      // Simple flip-flop positioning - always separate labels vertically
+      // Handle label positioning and visibility
       const verticalOffset = 45; // Distance from center
+      let trait1LabelX, trait1LabelY, trait2LabelX, trait2LabelY;
+      let showTrait1 = percentage1 > 0;
+      let showTrait2 = percentage2 > 0;
 
-      // Always position trait1 above center, trait2 below center
-      let trait1LabelX = Math.cos(trait1Rad) * (pieRadius + 25);
-      let trait1LabelY = -verticalOffset; // Above pie chart
-      let trait2LabelX = Math.cos(trait2Rad) * (pieRadius + 25);
-      let trait2LabelY = verticalOffset; // Below pie chart
+      if (percentage1 === 100 || percentage2 === 100) {
+        // For 100% cases, center the label with no line
+        if (percentage1 === 100) {
+          trait1LabelX = 0; // Center horizontally
+          trait1LabelY = 0; // Center vertically
+        }
+        if (percentage2 === 100) {
+          trait2LabelX = 0; // Center horizontally
+          trait2LabelY = 0; // Center vertically
+        }
+      } else {
+        // Normal flip-flop positioning - separate labels vertically
+        trait1LabelX = Math.cos(trait1Rad) * (pieRadius + 25);
+        trait1LabelY = -verticalOffset; // Above pie chart
+        trait2LabelX = Math.cos(trait2Rad) * (pieRadius + 25);
+        trait2LabelY = verticalOffset; // Below pie chart
+      }
 
-      // Calculate line end points to connect pie edge to labels accurately
-      const trait1EndX = trait1LabelX - Math.cos(trait1Rad) * 8; // 8px from label
-      const trait1EndY = trait1LabelY - Math.sin(trait1Rad) * 8;
-      const trait2EndX = trait2LabelX - Math.cos(trait2Rad) * 8; // 8px from label
-      const trait2EndY = trait2LabelY - Math.sin(trait2Rad) * 8;
+      // Calculate line end points only for visible labels (and not for 100% cases)
+      let linesHTML = "";
+      let labelsHTML = "";
+
+      if (showTrait1) {
+        // Only add line if it's not a 100% case
+        if (percentage1 !== 100) {
+          const trait1EndX = trait1LabelX - Math.cos(trait1Rad) * 8;
+          const trait1EndY = trait1LabelY - Math.sin(trait1Rad) * 8;
+
+          linesHTML += `<line x1="${70 + trait1StartX}" y1="${
+            70 + trait1StartY
+          }" 
+                             x2="${70 + trait1EndX}" y2="${70 + trait1EndY}" 
+                             stroke="var(--key-color)" stroke-width="1.5"/>`;
+        }
+
+        labelsHTML += `<div class="pie-label trait1" style="
+                         left: ${70 + trait1LabelX}px; 
+                         top: ${70 + trait1LabelY}px;
+                         transform: translate(-50%, -50%);
+                       ">
+                         ${percentage1}% ${RESULT_OPTIONS[trait1].label}
+                       </div>`;
+      }
+
+      if (showTrait2) {
+        // Only add line if it's not a 100% case
+        if (percentage2 !== 100) {
+          const trait2EndX = trait2LabelX - Math.cos(trait2Rad) * 8;
+          const trait2EndY = trait2LabelY - Math.sin(trait2Rad) * 8;
+
+          linesHTML += `<line x1="${70 + trait2StartX}" y1="${
+            70 + trait2StartY
+          }" 
+                             x2="${70 + trait2EndX}" y2="${70 + trait2EndY}" 
+                             stroke="var(--key-color)" stroke-width="1.5"/>`;
+        }
+
+        labelsHTML += `<div class="pie-label trait2" style="
+                         left: ${70 + trait2LabelX}px; 
+                         top: ${70 + trait2LabelY}px;
+                         transform: translate(-50%, -50%);
+                       ">
+                         ${percentage2}% ${RESULT_OPTIONS[trait2].label}
+                       </div>`;
+      }
 
       chartElement.innerHTML = `
         <div class="pie-chart-wrapper">
@@ -494,28 +551,10 @@ class MBTIQuiz {
                style="--percentage1-angle: ${angle1}deg;">
           </div>
           <svg class="pie-lines" width="140" height="140" style="position: absolute; top: 0; left: 0; pointer-events: none;">
-            <line x1="${70 + trait1StartX}" y1="${70 + trait1StartY}" 
-                  x2="${70 + trait1EndX}" y2="${70 + trait1EndY}" 
-                  stroke="var(--key-color)" stroke-width="1.5"/>
-            <line x1="${70 + trait2StartX}" y1="${70 + trait2StartY}" 
-                  x2="${70 + trait2EndX}" y2="${70 + trait2EndY}" 
-                  stroke="var(--key-color)" stroke-width="1.5"/>
+            ${linesHTML}
           </svg>
           <div class="pie-chart-labels">
-            <div class="pie-label trait1" style="
-              left: ${70 + trait1LabelX}px; 
-              top: ${70 + trait1LabelY}px;
-              transform: translate(-50%, -50%);
-            ">
-              ${percentage1}% ${RESULT_OPTIONS[trait1].label}
-            </div>
-            <div class="pie-label trait2" style="
-              left: ${70 + trait2LabelX}px; 
-              top: ${70 + trait2LabelY}px;
-              transform: translate(-50%, -50%);
-            ">
-              ${percentage2}% ${RESULT_OPTIONS[trait2].label}
-            </div>
+            ${labelsHTML}
           </div>
         </div>
       `;

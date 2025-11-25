@@ -8,6 +8,7 @@
 :root {
   --key-color: #533747;
   --key-color-2: #566246;
+  --key-color-3: #93b7be;
   --main-bg: #eae5e3;
   --main-text: rgb(161, 161, 163);
   --key-color-light: #53374733;
@@ -173,6 +174,20 @@ h6 {
 }
 
 /* Start Screen */
+#start-screen {
+  text-align: center;
+  padding: 40px 30px;
+  box-sizing: border-box;
+}
+
+#start-screen.active {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
 #start-screen h1 {
   font-size: 2.8em;
   margin-bottom: 20px;
@@ -188,6 +203,10 @@ h6 {
   font-weight: 400;
   letter-spacing: 0.01em;
   text-transform: uppercase;
+}
+
+#start-screen .btn {
+  margin: 0 auto;
 }
 
 /* Buttons */
@@ -491,25 +510,22 @@ h6 {
 }
 
 .user-character-display {
-  width: 120px;
+  width: 160px;
   height: 120px;
   position: relative;
-  border-radius: 50%;
-  border: 3px solid var(--key-color);
-  background: var(--trait-bg);
-  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: visible;
 }
 
 .user-character-display .character-layer {
   position: absolute !important;
   top: 50% !important;
   left: 50% !important;
-  transform: translate(-50%, -50%) !important;
-  width: 280% !important;
-  height: 280% !important;
+  transform: translate(-50%, -50%) scale(1.5) !important;
+  width: 100% !important;
+  height: 100% !important;
   object-fit: contain !important;
 }
 
@@ -633,7 +649,7 @@ h6 {
   position: relative;
   margin: 0 auto;
   background: conic-gradient(
-    var(--key-color) 0deg var(--percentage1-angle, 180deg),
+    var(--key-color-3) 0deg var(--percentage1-angle, 180deg),
     var(--key-color-2) var(--percentage1-angle, 180deg) 360deg
   );
   border: 2px solid var(--key-color);
