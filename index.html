@@ -6,24 +6,14 @@
     <title>rei mbti</title>
     <link rel="stylesheet" href="https://use.typekit.net/ytf2tfa.css" />
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="responsive.css" />
     <link rel="stylesheet" href="character-builder.css" />
   </head>
   <body>
-    <!-- Background illustration container -->
-    <div class="background-illustration">
-      <!-- Placeholder for future static background illustration -->
-      <div class="bg-placeholder">
-        <div class="bg-element bg-element-1"></div>
-        <div class="bg-element bg-element-2"></div>
-        <div class="bg-element bg-element-3"></div>
-        <!-- <div class="bg-text">Background Illustration Area</div> -->
-      </div>
-    </div>
-
     <div class="container">
       <!-- Quiz Start Screen -->
       <div id="start-screen" class="screen active">
-        <!-- <h1>rei quiz</h1> -->
+        <h2>rei quiz</h2>
         <p>rei personality quiz - in prog</p>
         <button id="start-btn" class="btn primary">start</button>
       </div>
@@ -163,7 +153,16 @@
             </div>
           </div>
 
-          <button id="restart-btn" class="btn primary">Take Quiz Again</button>
+          <div class="compatibility-buttons">
+            <div class="compatibility-item button-card">
+              <button id="share-btn" class="btn">Share Result</button>
+            </div>
+            <div class="compatibility-item button-card">
+              <button id="restart-btn" class="btn primary">
+                Take Quiz Again
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

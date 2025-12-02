@@ -1,11 +1,9 @@
-.dot {
-  color: var(--key-color-2, #888);
-  font-size: 1.2em;
-  margin: 0 0.2em;
-  line-height: 1;
-}
-/* CSS Variables */
+/** 
+CSS 
+**/
+
 :root {
+  /* Colors */
   --key-color: #533747;
   --key-color-2: #566246;
   --key-color-3: #93b7be;
@@ -14,6 +12,73 @@
   --key-color-light: #53374733;
   --trait-bg: #f6f2f1;
   --score-bg: #e0d6d3;
+
+  /* Font */
+  --font-sm: 0.8rem;
+  --font-base: 1rem;
+  --font-xl: 2rem;
+
+  --font-mono: "adelle-mono", "Adelle Mono", "SF Mono", "Monaco", "Inconsolata",
+    "Fira Code", monospace;
+
+  --font-normal: 400;
+  --font-semibold: 600;
+  --font-bold: 700;
+
+  /* Spacings */
+  --space-1: 0.25rem; /* 4px */
+  --space-2: 0.5rem; /* 8px */
+  --space-3: 0.75rem; /* 12px  */
+  --space-4: 1rem; /* 16px */
+  --space-5: 1.25rem; /* 20px */
+  --space-6: 1.5rem; /* 24px */
+}
+
+/** 
+TYPOGRAPHY 
+**/
+
+body {
+  font-family: var(--font-mono);
+  line-height: 1.7;
+  color: var(--main-text);
+  background-color: #d8d0ce;
+  height: 100vh;
+  font-size: var(--font-sm);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: var(--space-5);
+  overflow: hidden;
+  overflow-x: hidden;
+}
+
+h1 {
+  font-size: var(--font-xl);
+  font-weight: var(--font-bold);
+  color: var(--key-color);
+  margin-bottom: var(--space-5);
+}
+h2 {
+  font-size: var(--font-xl);
+  font-weight: var(--font-bold);
+  color: var(--key-color);
+  margin-bottom: var(--space-2);
+}
+h3 {
+  font-size: var(--font-sm);
+  font-weight: var(--font-semibold);
+  color: var(--key-color);
+  margin-bottom: var(--space-2);
+}
+h4,
+h5,
+h6 {
+  font-family: var(--font-mono);
+  font-weight: var(--font-semibold);
+  letter-spacing: -0.01em;
 }
 
 /* Reset and base styles */
@@ -21,112 +86,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-/* Background illustration container */
-.background-illustration {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  z-index: -1;
-  pointer-events: none;
-}
-
-.bg-placeholder {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  opacity: 0.3;
-}
-
-.bg-element {
-  position: absolute;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  opacity: 0.05;
-}
-
-.bg-element-1 {
-  width: 200px;
-  height: 200px;
-  top: 15%;
-  left: 10%;
-}
-
-.bg-element-2 {
-  width: 120px;
-  height: 120px;
-  top: 60%;
-  right: 15%;
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-}
-
-.bg-element-3 {
-  width: 80px;
-  height: 80px;
-  bottom: 20%;
-  left: 20%;
-  background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-}
-
-.bg-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-family: "adelle-mono", monospace;
-  font-size: 18px;
-  color: #666;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  opacity: 0.2;
-  font-weight: 300;
-}
-
-body {
-  font-family: "adelle-mono", "Adelle Mono", "SF Mono", "Monaco", "Inconsolata",
-    "Fira Code", monospace;
-  line-height: 1.7;
-  color: var(--main-text);
-  background-color: #d8d0ce;
-  height: 100vh;
-  font-size: 14px;
-  text-transform: uppercase;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0;
-  padding: 20px;
-  overflow: hidden;
-  overflow-x: hidden;
-}
-
-/* Typography */
-h1 {
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
-}
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: "adelle-mono", "Adelle Mono", "SF Mono", "Monaco", "Inconsolata",
-    "Fira Code", monospace;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  text-transform: uppercase;
-}
-
-.btn {
-  font-family: "adelle-mono", "Adelle Mono", "SF Mono", "Monaco", "Inconsolata",
-    "Fira Code", monospace;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
 }
 
 .container {
@@ -146,14 +105,14 @@ h6 {
 
   /* Visual styling */
   background: var(--main-bg, #ffffff);
-  border-radius: 20px;
+  border-radius: 0px;
   border: 2px dashed var(--key-color, #533747);
 
   /* Ensure content fits within container */
   overflow: hidden;
 
   /* Mobile device simulation */
-  margin: 20px;
+  margin: var(--space-5);
 }
 
 /* Screen management */
@@ -187,21 +146,12 @@ h6 {
   height: 100%;
 }
 
-#start-screen h1 {
-  font-size: 2.8em;
-  margin-bottom: 20px;
-  color: var(--key-color);
-  font-weight: 700;
-  letter-spacing: -0.04em;
-}
-
 #start-screen p {
-  font-size: 1.2em;
-  margin-bottom: 30px;
+  font-size: var(--font-base);
+  margin-bottom: var(--space-6);
   color: var(--key-color);
-  font-weight: 400;
+  font-weight: var(--font-normal);
   letter-spacing: 0.01em;
-  text-transform: uppercase;
 }
 
 #start-screen .btn {
@@ -210,25 +160,25 @@ h6 {
 
 /* Buttons */
 .btn {
+  font-size: var(--font-sm);
+  font-weight: var(--font-normal);
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 12px 24px;
+  padding: var(--space-3) var(--space-6);
   border: 2px dashed var(--key-color-light, #ccc);
   border-radius: 0;
   background: transparent;
   color: var(--key-color, #333);
-  font-size: 14px;
-  font-weight: 400;
-  font-family: "adelle-mono", "Adelle Mono", "SF Mono", "Monaco", "Inconsolata",
-    "Fira Code", monospace;
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
   cursor: pointer;
   transition: all 0.2s ease;
   text-align: center;
-  line-height: 1.2;
+  min-height: 0;
   min-height: 50px;
+  text-transform: uppercase;
 }
 
 .btn:hover:not(:disabled),
@@ -268,7 +218,10 @@ h6 {
   color: var(--main-bg);
 }
 
-/* Quiz Screen */
+/* /* /* /* /* 
+QUIZ SCREEN 
+/* */
+
 .quiz-body {
   display: flex;
   align-items: stretch;
@@ -286,38 +239,9 @@ h6 {
   margin-bottom: 30px;
 }
 
-.progress-circles {
-  display: flex;
-  gap: 12px;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 15px;
-}
-
-.progress-circle {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  background: var(--key-color-light);
-  border: 2px solid transparent;
-  box-sizing: border-box;
-  transition: 0.2s, border 0.2s;
-  position: relative;
-}
-
-.progress-circle.filled {
-  background: var(--key-color);
-}
-
-.progress-circle.current {
-  border: 2px solid var(--key-color);
-  background: var(--main-bg);
-}
-
 #question-counter {
-  font-weight: 600;
+  font-weight: var(--font-semibold);
   color: var(--key-color);
-  text-transform: uppercase;
 }
 
 .quiz-content {
@@ -359,10 +283,8 @@ h6 {
   background: transparent;
   color: var(--key-color, #333);
   font-size: 10px;
-  font-weight: 400;
-  font-family: "adelle-mono", "Adelle Mono", "SF Mono", "Monaco", "Inconsolata",
-    "Fira Code", monospace;
-  text-transform: uppercase;
+  font-weight: var(--font-normal);
+  font-family: var(--font-mono);
   letter-spacing: 0.02em;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -384,308 +306,7 @@ h6 {
   cursor: not-allowed;
 }
 
-@media (max-width: 1040px) {
-  .quiz-body {
-    max-width: 90vw;
-  }
-}
-
-/* When both width and height are constrained, prioritize width expansion */
-@media (max-width: 480px) and (max-height: 750px) {
-  .question-text {
-    max-width: 100% !important;
-    top: 60px;
-  }
-
-  .question-text h2 {
-    min-height: 100px;
-    max-height: 100px;
-    font-size: 1em;
-  }
-
-  .answers-container {
-    max-width: 100% !important;
-    bottom: 30px;
-  }
-}
-
-@media (max-width: 480px) {
-  .quiz-body {
-    min-height: 0;
-    flex-direction: column;
-    position: relative;
-    max-width: 90vw;
-  }
-
-  .quiz-content {
-    margin: 0;
-    padding: 24px 4px 180px 4px;
-    width: 100%;
-    min-height: 500px;
-  }
-
-  .quiz-navigation {
-    gap: 30px;
-    margin-top: 30px;
-  }
-
-  .question-text {
-    max-width: 100%;
-    padding: 0 8px;
-    min-width: 0;
-  }
-
-  .question-text h2 {
-    font-size: 1.1em;
-    margin: 0;
-    word-wrap: break-word;
-    hyphens: auto;
-    -webkit-line-clamp: 3;
-    line-clamp: 3;
-  }
-
-  .answers-container {
-    bottom: 70px;
-    padding: 0 8px;
-    padding-top: 0;
-    max-width: 100%;
-    min-width: 0;
-  }
-
-  .quiz-navigation {
-    bottom: 15px;
-    gap: 30px;
-  }
-}
-
-/* Results Screen - Mobile-first design */
-#results-screen {
-  text-align: center;
-  padding: 40px 30px;
-}
-
-.result-content {
-  margin: 0 auto;
-}
-
-.personality-type {
-  margin-bottom: 20px;
-}
-
-.personality-type h2 {
-  font-size: 2.2em;
-  font-weight: bold;
-  color: var(--key-color);
-  margin-bottom: 8px;
-}
-
-.personality-image {
-  margin: 16px 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.personality-image img {
-  max-width: 80px;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-  opacity: 0.8;
-}
-
-.user-character-display {
-  width: 160px;
-  height: 120px;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: visible;
-}
-
-.user-character-display .character-layer {
-  position: absolute !important;
-  top: 50% !important;
-  left: 50% !important;
-  transform: translate(-50%, -50%) scale(1.5) !important;
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: contain !important;
-}
-
-.personality-scores {
-  margin-bottom: 16px;
-}
-
-/* Compatibility section */
-.compatibility-section {
-  display: flex;
-  flex-direction: row;
-  gap: 30px;
-  margin-bottom: 20px;
-  margin-top: -8px;
-  max-width: 100%;
-  width: 100%;
-  justify-content: center;
-}
-
-.compatibility-item {
-  text-align: center;
-  padding: 12px 10px;
-  background: var(--trait-bg);
-  border-radius: 8px;
-  border: 1px solid var(--key-color-light);
-  min-height: 140px;
-  min-width: 130px;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 8px;
-}
-
-.compatibility-character {
-  width: 80px;
-  height: 80px;
-  position: relative;
-  flex-shrink: 0;
-}
-
-.compatibility-character .character-layer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-.compatibility-item h3 {
-  font-size: 0.7rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: var(--key-color);
-  margin-bottom: 6px;
-}
-
-.compatibility-item p {
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: var(--key-color);
-  margin: 0;
-}
-
-/* Center restart button */
-#restart-btn {
-  display: block;
-  margin: 0 auto;
-}
-
-.personality-scores h4 {
-  font-size: 1.1em;
-  margin-bottom: 16px;
-  color: var(--key-color);
-  text-align: center;
-}
-
-/* Pie Charts Container */
-.pie-charts-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: -10px 200px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
-
-/* Individual Pie Chart */
-.pie-chart-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  position: relative;
-  padding: 0px 4px;
-  min-height: 160px;
-}
-
-.pie-chart-item .pie-chart-label {
-  order: 2;
-  margin-top: 8px;
-  margin-bottom: 0;
-}
-
-.pie-chart-wrapper {
-  order: 1;
-  position: relative;
-  width: 140px;
-  height: 140px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.pie-chart {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  position: relative;
-  margin: 0 auto;
-  background: conic-gradient(
-    var(--key-color-3) 0deg var(--percentage1-angle, 180deg),
-    var(--key-color-2) var(--percentage1-angle, 180deg) 360deg
-  );
-  border: 2px solid var(--key-color);
-}
-
-/* External Labels with SVG Lines */
-.pie-chart-labels {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  pointer-events: none;
-}
-
-.pie-lines {
-  z-index: 1;
-}
-
-.pie-label {
-  position: absolute;
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--key-color);
-  background: var(--main-bg);
-  padding: 3px 6px;
-  border-radius: 4px;
-  border: 1px solid var(--key-color-light);
-  white-space: nowrap;
-  z-index: 3;
-  line-height: 1.2;
-  text-decoration: none;
-}
-
-/* Labels positioned dynamically by JavaScript - no static CSS needed */
-
-.pie-chart-label {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--key-color);
-  text-transform: uppercase;
-  letter-spacing: 0.3px;
-  margin-bottom: 6px;
-  opacity: 0.8;
-}
-
-.pie-chart-traits {
-  display: none;
-}
-
-/* Question text styling - identical to answers container */
+/* QUESTION TEXT */
 .question-text {
   position: absolute;
   top: 140px;
@@ -707,7 +328,6 @@ h6 {
   align-items: center;
   justify-content: space-between;
 
-  /* Match answer button styling exactly */
   border: 2px dashed var(--key-color-light, #ccc);
   border-radius: 0;
   background: transparent;
@@ -715,8 +335,7 @@ h6 {
   position: relative;
   box-sizing: border-box;
 
-  /* Typography */
-  font-size: 1.2em;
+  font-size: var(--font-base);
   line-height: 1.4;
   word-wrap: break-word;
   hyphens: auto;
@@ -729,7 +348,27 @@ h6 {
   line-clamp: 3;
 }
 
-/* Fixed Answer Blocks at Bottom */
+.question-text .mini-character {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 80px;
+  pointer-events: none;
+}
+
+.question-text .mini-character .character-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* ANSWER BUTTONS */
+
 .answers-container {
   position: absolute;
   bottom: 80px;
@@ -749,6 +388,7 @@ h6 {
 }
 
 .answer-btn {
+  text-transform: uppercase;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -760,10 +400,8 @@ h6 {
   background: transparent;
   color: var(--key-color, #333);
   font-size: 12px;
-  font-weight: 400;
-  font-family: "adelle-mono", "Adelle Mono", "SF Mono", "Monaco", "Inconsolata",
-    "Fira Code", monospace;
-  text-transform: uppercase;
+  font-weight: var(--font-normal);
+  font-family: var(--font-mono);
   letter-spacing: 0.02em;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -798,307 +436,125 @@ h6 {
   cursor: not-allowed;
 }
 
-/* Responsive Design */
-@media (max-width: 480px) {
-  .container {
-    padding: 0 10px;
-  }
+/* PROGRESS CIRCLE */
 
-  .screen {
-    padding: 30px 20px;
-  }
-
-  #start-screen h1 {
-    font-size: 2em;
-  }
-
-  #results-screen {
-    padding: 30px 20px;
-  }
-
-  .progress-circles {
-    gap: 8px;
-    margin-bottom: 12px;
-    flex-shrink: 0;
-  }
-
-  .progress-circle {
-    width: 16px;
-    height: 16px;
-    min-width: 16px;
-    min-height: 16px;
-    flex-shrink: 0;
-  }
-
-  .question-image {
-    margin-bottom: 0;
-  }
-
-  .personality-type h2 {
-    font-size: 2em;
-  }
-
-  .pie-charts-container {
-    grid-template-columns: 1fr 1fr;
-    gap: -10px 60px;
-    max-width: 100%;
-    margin: 0 auto;
-    justify-content: center;
-  }
-
-  /* At 480px, hide lines and position labels directly above/below */
-  .pie-lines {
-    display: none;
-  }
-
-  .pie-label.trait1 {
-    top: 20px !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-  }
-
-  .pie-label.trait2 {
-    top: 100px !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-  }
-
-  /* Special case: Keep 100% labels centered on the pie */
-  .pie-label[style*="left: 70px"][style*="top: 70px"] {
-    top: 50% !important;
-    left: 50% !important;
-    transform: translate(-50%, -50%) !important;
-  }
-
-  /* Smaller compatibility cards */
-  .compatibility-section {
-    gap: 15px;
-  }
-
-  .compatibility-item {
-    min-height: 110px;
-    min-width: 110px;
-    max-width: 110px;
-    padding: 10px 8px;
-    gap: 6px;
-    flex: 0 0 auto;
-  }
-
-  .compatibility-character {
-    width: 60px;
-    height: 60px;
-  }
-
-  .compatibility-item h3 {
-    font-size: 0.6rem;
-    margin-bottom: 3px;
-  }
-
-  .compatibility-item p {
-    font-size: 0.65rem;
-  }
-
-  .pie-chart-content {
-    font-size: 8px;
-  }
-  .personality-image img {
-    max-width: 70px;
-  }
+.progress-circles {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
 }
 
-@media (max-width: 480px) {
-  .screen {
-    padding: 20px 15px;
-  }
-
-  .answer-btn {
-    padding: 12px 15px;
-    font-size: 11px;
-  }
-
-  .btn {
-    padding: 10px 25px;
-    font-size: 14px;
-  }
-
-  .progress-circles {
-    gap: 6px;
-  }
-}
-
-/* Mobile-first responsive container */
-@media (max-width: 430px) {
-  body {
-    padding: 15px;
-  }
-
-  .container {
-    width: calc(100% - 30px);
-    height: calc(100vh - 30px);
-    max-width: calc(100% - 30px);
-    max-height: calc(100vh - 30px);
-    margin: 0;
-    border-radius: 10px;
-  }
-}
-
-@media (max-height: 880px) {
-  body {
-    padding: 15px;
-  }
-
-  .container {
-    height: calc(100vh - 30px);
-    max-height: calc(100vh - 30px);
-    margin: 0;
-  }
-}
-
-@media (max-height: 850px) {
-  body {
-    padding: 10px;
-  }
-
-  .results-section {
-    padding: 20px 40px;
-  }
-
-  .compatibility-section {
-    margin-bottom: 10px;
-    margin-top: -15px;
-  }
-
-  .pie-charts-container {
-    margin-bottom: 10px;
-    gap: -20px 200px;
-  }
-
-  .pie-chart-item {
-    min-height: 130px;
-  }
-
-  .personality-scores h4 {
-    margin-bottom: 8px;
-  }
-
-  .personality-scores {
-    margin-bottom: 15px;
-  }
-
-  #restart-btn {
-    margin-top: 10px;
-  }
-}
-
-@media (max-height: 800px) {
-  /* Smaller main character */
-  .user-character-display {
-    width: 120px;
-    height: 90px;
-  }
-
-  /* Smaller compatibility cards */
-  .compatibility-item {
-    min-height: 90px;
-    padding: 8px 6px;
-  }
-
-  .compatibility-character {
-    width: 45px;
-    height: 45px;
-  }
-
-  .compatibility-item h3 {
-    font-size: 0.6rem;
-    margin-bottom: 3px;
-  }
-
-  .compatibility-item p {
-    font-size: 0.7rem;
-  }
-
-  /* Smaller restart button with more spacing */
-  #restart-btn {
-    padding: 6px 12px;
-    font-size: 0.8rem;
-    margin-top: 15px;
-  }
-}
-
-@media (max-height: 720px) {
-  /* Even smaller main character for iPhone SE edge case */
-  .user-character-display {
-    width: 70px;
-    height: 50px;
-  }
-
-  /* Smaller result header */
-  .personality-type h2 {
-    font-size: 1.4em !important;
-    margin-bottom: 5px !important;
-  }
-
-  /* Even smaller restart button for iPhone SE */
-  #restart-btn {
-    padding: 2px 8px !important;
-    font-size: 0.7rem !important;
-    margin-top: 5px !important;
-  }
-}
-
-/* When vertical space is tight, make containers wider to reduce height */
-@media (max-height: 750px) {
-  .question-text {
-    max-width: 500px;
-    top: 100px;
-  }
-
-  .question-text h2 {
-    min-height: 190px;
-    max-height: 190px;
-  }
-
-  .answers-container {
-    max-width: 500px;
-    bottom: 60px;
-  }
-}
-
-@media (max-height: 650px) {
-  .question-text {
-    max-width: 600px;
-    top: 80px;
-  }
-
-  .question-text h2 {
-    min-height: 150px;
-    max-height: 150px;
-  }
-
-  .answers-container {
-    max-width: 600px;
-    bottom: 40px;
-  }
-}
 .progress-circle {
   width: 14px;
   height: 14px;
   min-width: 14px;
   min-height: 14px;
+  border-radius: 50%;
+  background: var(--key-color-light);
+  border: 2px solid transparent;
+  box-sizing: border-box;
+  transition: 0.2s, border 0.2s;
+  position: relative;
 }
 
-/* Add character to question box */
-.question-text .mini-character {
+.progress-circle.filled {
+  background: var(--key-color);
+}
+
+.progress-circle.current {
+  border: 2px solid var(--key-color);
+  background: var(--main-bg);
+}
+
+/* /* /* /* /* 
+RESULTS SCREEN 
+/* */
+
+#results-screen {
+  text-align: center;
+  padding: 40px 30px;
+}
+
+.result-content {
+  margin: 0 auto;
+}
+
+.personality-image {
+  margin: var(--space-4) 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.personality-image img {
+  max-width: 80px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  opacity: 0.8;
+}
+
+.user-character-display {
+  width: 160px;
+  height: 120px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+.user-character-display .character-layer {
   position: absolute;
-  bottom: 10px;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, -50%) scale(1.5);
+  width: 100%;
+  height: 100%;
+}
+
+.personality-scores {
+  margin-bottom: 26px;
+}
+
+/* COMPATABILITY SECTION */
+.compatibility-section {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  margin-bottom: 20px;
+  margin-top: -8px;
+  max-width: 100%;
+  width: 100%;
+  justify-content: center;
+}
+
+.compatibility-item {
+  text-align: center;
+  padding: var(--space-3) var(--space-2);
+  background: var(--trait-bg);
+  border-radius: 0px;
+  border: 1px solid var(--key-color-light);
+  min-height: 140px;
+  min-width: 130px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+}
+
+.compatibility-character {
   width: 80px;
   height: 80px;
-  pointer-events: none;
+  position: relative;
+  flex-shrink: 0;
 }
 
-.question-text .mini-character .character-layer {
+.compatibility-character .character-layer {
   position: absolute;
   top: 0;
   left: 0;
@@ -1107,7 +563,94 @@ h6 {
   object-fit: contain;
 }
 
-/* Hide the original character section completely */
-.character-section {
-  display: none;
+.compatibility-item p {
+  font-size: var(--font-sm);
+  font-weight: var(--font-mono);
+  color: var(--key-color);
+  margin: 0;
+}
+
+.compatibility-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  margin-bottom: 20px;
+  margin-top: 10px;
+  max-width: 100%;
+  width: 100%;
+  justify-content: center;
+}
+
+.compatibility-buttons .compatibility-item.button-card {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  min-height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.compatibility-item.button-card button {
+  margin: 0;
+}
+
+.personality-scores h4 {
+  font-size: var(--font-sm);
+  margin-bottom: var(--space-4);
+  color: var(--key-color);
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.pie-charts-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.pie-chart-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  padding: 0 var(--space-1);
+}
+
+.pie-chart-wrapper {
+  order: 1;
+  position: relative;
+  width: 140px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pie-chart {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  position: relative;
+  margin: 0 auto;
+  background: conic-gradient(
+    var(--key-color-3) 0deg var(--percentage1-angle, 180deg),
+    var(--key-color-2) var(--percentage1-angle, 180deg) 360deg
+  );
+  border: 2px solid var(--key-color);
+}
+
+.pie-label {
+  position: absolute;
+  font-size: var(--font-sm);
+  font-weight: var(--font-semibold);
+  color: var(--key-color);
+  background: var(--main-bg);
+  padding: 3px 6px;
+  border-radius: 0px;
+  border: 1px solid var(--key-color-light);
+  white-space: nowrap;
+  z-index: 3;
+  line-height: 1;
 }
