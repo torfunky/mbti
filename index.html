@@ -3,22 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>rei mbti</title>
+    <title>mbti</title>
     <link rel="stylesheet" href="https://use.typekit.net/ytf2tfa.css" />
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="stylesheet" href="responsive.css" />
-    <link rel="stylesheet" href="character-builder.css" />
+
+    <link rel="stylesheet" href="styles/styles.css" />
+    <link rel="stylesheet" href="styles/responsive.css" />
+    <link rel="stylesheet" href="styles/character-builder.css" />
   </head>
   <body>
     <div class="container">
-      <!-- Quiz Start Screen -->
       <div id="start-screen" class="screen active">
-        <h2>rei quiz</h2>
-        <p>rei personality quiz - in prog</p>
+        <h2>personality quiz</h2>
+        <p>- in prog -</p>
         <button id="start-btn" class="btn primary">start</button>
       </div>
 
-      <!-- Character Builder Screen -->
       <div id="character-builder-screen" class="screen">
         <div class="character-builder-container">
           <div class="character-name-section">
@@ -31,12 +30,20 @@
                 maxlength="10"
               />
             </h1>
-            <p>subtitle</p>
           </div>
 
-          <!-- Character Builder Interface -->
+          <div class="color-picker-section">
+            <div class="color-picker">
+              <div class="color-option" data-color="1"></div>
+              <div class="color-option" data-color="2"></div>
+              <div class="color-option active" data-color="3"></div>
+              <div class="color-option" data-color="4"></div>
+              <div class="color-option" data-color="5"></div>
+              <div class="color-option" data-color="6"></div>
+            </div>
+          </div>
+
           <div class="character-builder-interface">
-            <!-- Left Arrow Controls -->
             <div class="arrow-controls left">
               <button class="feature-arrow prev" data-feature="bodyType">
                 ‹
@@ -47,14 +54,21 @@
               <button class="feature-arrow prev" data-feature="feature02Type">
                 ‹
               </button>
+              <button class="feature-arrow prev" data-feature="feature03Type">
+                ‹
+              </button>
+              <button class="feature-arrow prev" data-feature="feature04Type">
+                ‹
+              </button>
+              <button class="feature-arrow prev" data-feature="feature05Type">
+                ‹
+              </button>
             </div>
 
-            <!-- Character Display -->
             <div class="character-preview">
               <div id="character-display" class="character-display"></div>
             </div>
 
-            <!-- Right Arrow Controls -->
             <div class="arrow-controls right">
               <button class="feature-arrow next" data-feature="bodyType">
                 ›
@@ -63,6 +77,15 @@
                 ›
               </button>
               <button class="feature-arrow next" data-feature="feature02Type">
+                ›
+              </button>
+              <button class="feature-arrow next" data-feature="feature03Type">
+                ›
+              </button>
+              <button class="feature-arrow next" data-feature="feature04Type">
+                ›
+              </button>
+              <button class="feature-arrow next" data-feature="feature05Type">
                 ›
               </button>
             </div>
@@ -75,7 +98,6 @@
         </div>
       </div>
 
-      <!-- Quiz Screen -->
       <div id="quiz-screen" class="screen">
         <div class="quiz-body">
           <div class="quiz-content">
@@ -97,7 +119,7 @@
             <div class="quiz-navigation">
               <button
                 id="prev-btn"
-                class="arrow-btn"
+                class="btn-back"
                 disabled
                 aria-label="Previous Question"
               >
@@ -105,7 +127,7 @@
               </button>
               <button
                 id="next-btn"
-                class="arrow-btn"
+                class="btn-next"
                 disabled
                 aria-label="Next Question"
               >
@@ -116,7 +138,6 @@
         </div>
       </div>
 
-      <!-- Results Screen -->
       <div id="results-screen" class="screen">
         <div class="result-content">
           <div class="personality-type">
@@ -155,7 +176,7 @@
 
           <div class="compatibility-buttons">
             <div class="compatibility-item button-card">
-              <button id="share-btn" class="btn">Share Result</button>
+              <button id="share-btn" class="btn secondary">Share Result</button>
             </div>
             <div class="compatibility-item button-card">
               <button id="restart-btn" class="btn primary">
@@ -166,6 +187,10 @@
         </div>
       </div>
     </div>
+
+    <footer class="universal-footer">
+      <p>quiz and dev by reiley nymeyer design by phoebe zheng ツ</p>
+    </footer>
 
     <script type="module" src="script.js"></script>
   </body>

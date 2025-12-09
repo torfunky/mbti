@@ -63,6 +63,26 @@ class MBTIQuiz {
     this.prevBtn.addEventListener("click", () => this.previousQuestion());
     this.nextBtn.addEventListener("click", () => this.nextQuestion());
     this.restartBtn.addEventListener("click", () => this.restartQuiz());
+
+    // Color picker event listeners
+    const colorOptions = document.querySelectorAll(".color-option");
+    colorOptions.forEach((colorOption) => {
+      colorOption.addEventListener("click", () => {
+        // Remove active class from all color options
+        colorOptions.forEach((opt) => opt.classList.remove("active"));
+        // Add active class to clicked option
+        colorOption.classList.add("active");
+
+        // Update character builder if it exists
+        if (this.characterBuilder) {
+          const colorValue = parseInt(colorOption.dataset.color);
+          this.characterBuilder
+            .getCharacter()
+            .updateProperty("colorType", colorValue);
+        }
+      });
+    });
+
     // Keyboard navigation for accessibility
     this.prevBtn.addEventListener("keydown", (e) => {
       if ((e.key === "Enter" || e.key === " ") && !this.prevBtn.disabled) {
