@@ -127,38 +127,49 @@ class MBTIQuiz {
 
     const character = this.characterBuilder.character;
     const bodyType = character.getProperty("bodyType");
+    const colorType = character.getProperty("colorType");
     const feature01Type = character.getProperty("feature01Type");
     const feature02Type = character.getProperty("feature02Type");
+    const feature03Type = character.getProperty("feature03Type");
+    const feature04Type = character.getProperty("feature04Type");
+    const feature05Type = character.getProperty("feature05Type");
 
     const bodyOption = CHARACTER_OPTIONS.bodyTypes[bodyType];
     const feature01Option = CHARACTER_OPTIONS.feature01Types[feature01Type];
     const feature02Option = CHARACTER_OPTIONS.feature02Types[feature02Type];
+    const feature03Option = CHARACTER_OPTIONS.feature03Types[feature03Type];
+    const feature04Option = CHARACTER_OPTIONS.feature04Types[feature04Type];
+    const feature05Option = CHARACTER_OPTIONS.feature05Types[feature05Type];
 
     // Create mini character container
     const miniChar = document.createElement("div");
     miniChar.className = "mini-character";
 
-    // Add character layers
+    // Add colored body layer
     if (bodyOption) {
       const bodyImg = document.createElement("img");
-      bodyImg.src = bodyOption.image;
+      bodyImg.src = bodyOption.getImageForColor(colorType);
       bodyImg.className = "character-layer body";
       miniChar.appendChild(bodyImg);
     }
 
-    if (feature01Option) {
-      const feature01Img = document.createElement("img");
-      feature01Img.src = feature01Option.image;
-      feature01Img.className = "character-layer feature01";
-      miniChar.appendChild(feature01Img);
-    }
+    // Add all feature layers
+    const features = [
+      { option: feature01Option, class: "feature01" },
+      { option: feature02Option, class: "feature02" },
+      { option: feature03Option, class: "feature03" },
+      { option: feature04Option, class: "feature04" },
+      { option: feature05Option, class: "feature05" },
+    ];
 
-    if (feature02Option) {
-      const feature02Img = document.createElement("img");
-      feature02Img.src = feature02Option.image;
-      feature02Img.className = "character-layer feature02";
-      miniChar.appendChild(feature02Img);
-    }
+    features.forEach(({ option, class: className }) => {
+      if (option) {
+        const img = document.createElement("img");
+        img.src = option.image;
+        img.className = `character-layer ${className}`;
+        miniChar.appendChild(img);
+      }
+    });
 
     // Add to question text box
     const questionTextH2 = document.querySelector(".question-text h2");
@@ -385,25 +396,45 @@ class MBTIQuiz {
       let userBodyType = 0;
       let userFeature01Type = 0;
       let userFeature02Type = 0;
+      let userFeature03Type = 0;
+      let userFeature04Type = 0;
+      let userFeature05Type = 0;
+      let userColorType = 1;
 
       if (typeof this.userCharacter.getProperty === "function") {
         userBodyType = this.userCharacter.getProperty("bodyType");
         userFeature01Type = this.userCharacter.getProperty("feature01Type");
         userFeature02Type = this.userCharacter.getProperty("feature02Type");
+        userFeature03Type = this.userCharacter.getProperty("feature03Type");
+        userFeature04Type = this.userCharacter.getProperty("feature04Type");
+        userFeature05Type = this.userCharacter.getProperty("feature05Type");
+        userColorType = this.userCharacter.getProperty("colorType");
       } else if (this.userCharacter.bodyType !== undefined) {
         userBodyType = this.userCharacter.bodyType;
         userFeature01Type = this.userCharacter.feature01Type;
         userFeature02Type = this.userCharacter.feature02Type;
+        userFeature03Type = this.userCharacter.feature03Type;
+        userFeature04Type = this.userCharacter.feature04Type;
+        userFeature05Type = this.userCharacter.feature05Type;
+        userColorType = this.userCharacter.colorType;
       } else if (this.userCharacter.data) {
         userBodyType = this.userCharacter.data.bodyType;
         userFeature01Type = this.userCharacter.data.feature01Type;
         userFeature02Type = this.userCharacter.data.feature02Type;
+        userFeature03Type = this.userCharacter.data.feature03Type;
+        userFeature04Type = this.userCharacter.data.feature04Type;
+        userFeature05Type = this.userCharacter.data.feature05Type;
+        userColorType = this.userCharacter.data.colorType;
       }
 
       const userCharacterData = {
         bodyType: userBodyType,
         feature01Type: userFeature01Type,
         feature02Type: userFeature02Type,
+        feature03Type: userFeature03Type,
+        feature04Type: userFeature04Type,
+        feature05Type: userFeature05Type,
+        colorType: userColorType,
       };
 
       CharacterUtils.renderCharacterInContainer(
@@ -502,16 +533,22 @@ class MBTIQuiz {
       const trait1Rad = ((trait1CenterAngle - 90) * Math.PI) / 180;
       const trait2Rad = ((trait2CenterAngle - 90) * Math.PI) / 180;
 
-      // Calculate line start points (edge of pie chart)
-      const pieRadius = 38; // Pie chart radius minus border
+      // Get CSS custom properties for scalable dimensions
+      const computedStyle = getComputedStyle(document.documentElement);
+      const wrapperSize =
+        parseInt(computedStyle.getPropertyValue("--pie-wrapper-size")) || 100;
+      const chartSize =
+        parseInt(computedStyle.getPropertyValue("--pie-chart-size")) || 60;
+      const center = wrapperSize / 2;
+      const pieRadius = chartSize / 2 - 2; // Pie chart radius minus border
 
       const trait1StartX = Math.cos(trait1Rad) * pieRadius;
       const trait1StartY = Math.sin(trait1Rad) * pieRadius;
       const trait2StartX = Math.cos(trait2Rad) * pieRadius;
       const trait2StartY = Math.sin(trait2Rad) * pieRadius;
 
-      // Handle label positioning and visibility
-      const verticalOffset = 45; // Distance from center
+      // Handle label positioning and visibility (scale with wrapper size)
+      const verticalOffset = wrapperSize * 0.36; // Distance from center (32% of wrapper)
       let trait1LabelX, trait1LabelY, trait2LabelX, trait2LabelY;
       let showTrait1 = percentage1 > 0;
       let showTrait2 = percentage2 > 0;
@@ -544,16 +581,18 @@ class MBTIQuiz {
           const trait1EndX = trait1LabelX - Math.cos(trait1Rad) * 8;
           const trait1EndY = trait1LabelY - Math.sin(trait1Rad) * 8;
 
-          linesHTML += `<line x1="${70 + trait1StartX}" y1="${
-            70 + trait1StartY
+          linesHTML += `<line x1="${center + trait1StartX}" y1="${
+            center + trait1StartY
           }" 
-                             x2="${70 + trait1EndX}" y2="${70 + trait1EndY}" 
+                             x2="${center + trait1EndX}" y2="${
+            center + trait1EndY
+          }" 
                              stroke="var(--key-color)" stroke-width="1.5"/>`;
         }
 
         labelsHTML += `<div class="pie-label trait1" style="
-                         left: ${70 + trait1LabelX}px; 
-                         top: ${70 + trait1LabelY}px;
+                         left: ${center + trait1LabelX}px; 
+                         top: ${center + trait1LabelY}px;
                          transform: translate(-50%, -50%);
                        ">
                          ${percentage1}% ${RESULT_OPTIONS[trait1].label}
@@ -566,16 +605,18 @@ class MBTIQuiz {
           const trait2EndX = trait2LabelX - Math.cos(trait2Rad) * 8;
           const trait2EndY = trait2LabelY - Math.sin(trait2Rad) * 8;
 
-          linesHTML += `<line x1="${70 + trait2StartX}" y1="${
-            70 + trait2StartY
+          linesHTML += `<line x1="${center + trait2StartX}" y1="${
+            center + trait2StartY
           }" 
-                             x2="${70 + trait2EndX}" y2="${70 + trait2EndY}" 
+                             x2="${center + trait2EndX}" y2="${
+            center + trait2EndY
+          }" 
                              stroke="var(--key-color)" stroke-width="1.5"/>`;
         }
 
         labelsHTML += `<div class="pie-label trait2" style="
-                         left: ${70 + trait2LabelX}px; 
-                         top: ${70 + trait2LabelY}px;
+                         left: ${center + trait2LabelX}px; 
+                         top: ${center + trait2LabelY}px;
                          transform: translate(-50%, -50%);
                        ">
                          ${percentage2}% ${RESULT_OPTIONS[trait2].label}

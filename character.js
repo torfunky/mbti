@@ -82,8 +82,12 @@ export class Character {
       const saved = sessionStorage.getItem("mbti-character");
       if (saved) {
         const parsedData = JSON.parse(saved);
-        this.data = { ...this.data, ...parsedData };
+        // Only load if we have actual saved character data
+        if (parsedData && Object.keys(parsedData).length > 0) {
+          this.data = { ...this.data, ...parsedData };
+        }
       }
+      // If no saved data, keep the random values from constructor
     } catch (error) {
       console.warn("Failed to load character from session storage:", error);
     }
@@ -98,6 +102,24 @@ export class Character {
     } catch (error) {
       console.warn("Failed to clear character from session storage:", error);
     }
+  }
+
+  /**
+   * Randomize all character features
+   */
+  randomize() {
+    this.data = {
+      ...this.data,
+      bodyType: Math.floor(Math.random() * 3), // 0-2 for 3 body shapes
+      feature01Type: Math.floor(Math.random() * 5), // 0-4 for 5 features
+      feature02Type: Math.floor(Math.random() * 5),
+      feature03Type: Math.floor(Math.random() * 5),
+      feature04Type: Math.floor(Math.random() * 5),
+      feature05Type: Math.floor(Math.random() * 5),
+      colorType: Math.floor(Math.random() * 6) + 1, // 1-6 for colors
+    };
+    this.saveToSession();
+    this.notifyListeners("randomize", this.data);
   }
 
   /**

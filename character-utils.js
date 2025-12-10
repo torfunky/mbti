@@ -42,6 +42,22 @@ export class CharacterUtils {
       bodyType: randomBody.id,
       feature01Type: randomFeature01.id,
       feature02Type: randomFeature02.id,
+      feature03Type: CHARACTER_OPTIONS.feature03Types
+        ? CHARACTER_OPTIONS.feature03Types[
+            Math.floor(Math.random() * CHARACTER_OPTIONS.feature03Types.length)
+          ].id
+        : 0,
+      feature04Type: CHARACTER_OPTIONS.feature04Types
+        ? CHARACTER_OPTIONS.feature04Types[
+            Math.floor(Math.random() * CHARACTER_OPTIONS.feature04Types.length)
+          ].id
+        : 0,
+      feature05Type: CHARACTER_OPTIONS.feature05Types
+        ? CHARACTER_OPTIONS.feature05Types[
+            Math.floor(Math.random() * CHARACTER_OPTIONS.feature05Types.length)
+          ].id
+        : 0,
+      colorType: Math.floor(Math.random() * 6) + 1, // Random color 1-6
     };
   }
 
@@ -66,38 +82,72 @@ export class CharacterUtils {
     container.innerHTML = "";
 
     try {
-      // Create character layers
-      const bodyImg = document.createElement("img");
-      bodyImg.src = CHARACTER_OPTIONS.bodyTypes[characterData.bodyType].image;
-      bodyImg.className = "character-layer body";
-      bodyImg.alt = "Character body";
-      bodyImg.onload = () =>
-        console.log(`✅ Loaded body image: ${bodyImg.src}`);
-      bodyImg.onerror = () =>
-        console.error(`❌ Failed to load body image: ${bodyImg.src}`);
-      container.appendChild(bodyImg);
+      // Create colored body layer
+      const bodyOption = CHARACTER_OPTIONS.bodyTypes[characterData.bodyType];
+      if (bodyOption) {
+        const bodyImg = document.createElement("img");
+        // Use colored body if colorType is available, otherwise fallback to regular image
+        bodyImg.src =
+          characterData.colorType && bodyOption.getImageForColor
+            ? bodyOption.getImageForColor(characterData.colorType)
+            : bodyOption.image || bodyOption.getImageForColor(1); // fallback to color 1
+        bodyImg.className = "character-layer body";
+        bodyImg.alt = "Character body";
+        bodyImg.onload = () =>
+          console.log(`✅ Loaded body image: ${bodyImg.src}`);
+        bodyImg.onerror = () =>
+          console.error(`❌ Failed to load body image: ${bodyImg.src}`);
+        container.appendChild(bodyImg);
+      }
 
-      const feature01Img = document.createElement("img");
-      feature01Img.src =
-        CHARACTER_OPTIONS.feature01Types[characterData.feature01Type].image;
-      feature01Img.className = "character-layer feature01";
-      feature01Img.alt = "Character feature 1";
-      feature01Img.onload = () =>
-        console.log(`✅ Loaded feature01 image: ${feature01Img.src}`);
-      feature01Img.onerror = () =>
-        console.error(`❌ Failed to load feature01 image: ${feature01Img.src}`);
-      container.appendChild(feature01Img);
+      // Add all feature layers
+      const features = [
+        {
+          type: "feature01Type",
+          options: CHARACTER_OPTIONS.feature01Types,
+          class: "feature01",
+        },
+        {
+          type: "feature02Type",
+          options: CHARACTER_OPTIONS.feature02Types,
+          class: "feature02",
+        },
+        {
+          type: "feature03Type",
+          options: CHARACTER_OPTIONS.feature03Types,
+          class: "feature03",
+        },
+        {
+          type: "feature04Type",
+          options: CHARACTER_OPTIONS.feature04Types,
+          class: "feature04",
+        },
+        {
+          type: "feature05Type",
+          options: CHARACTER_OPTIONS.feature05Types,
+          class: "feature05",
+        },
+      ];
 
-      const feature02Img = document.createElement("img");
-      feature02Img.src =
-        CHARACTER_OPTIONS.feature02Types[characterData.feature02Type].image;
-      feature02Img.className = "character-layer feature02";
-      feature02Img.alt = "Character feature 2";
-      feature02Img.onload = () =>
-        console.log(`✅ Loaded feature02 image: ${feature02Img.src}`);
-      feature02Img.onerror = () =>
-        console.error(`❌ Failed to load feature02 image: ${feature02Img.src}`);
-      container.appendChild(feature02Img);
+      features.forEach(({ type, options, class: className }) => {
+        if (
+          characterData[type] !== undefined &&
+          options &&
+          options[characterData[type]]
+        ) {
+          const featureImg = document.createElement("img");
+          featureImg.src = options[characterData[type]].image;
+          featureImg.className = `character-layer ${className}`;
+          featureImg.alt = `Character ${className}`;
+          featureImg.onload = () =>
+            console.log(`✅ Loaded ${className} image: ${featureImg.src}`);
+          featureImg.onerror = () =>
+            console.error(
+              `❌ Failed to load ${className} image: ${featureImg.src}`
+            );
+          container.appendChild(featureImg);
+        }
+      });
 
       console.log(
         `Added ${container.children.length} images to container ${containerId}`

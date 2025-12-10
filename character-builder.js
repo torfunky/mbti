@@ -2,14 +2,16 @@ import { Character, CHARACTER_OPTIONS } from "./character.js";
 export class CharacterBuilder {
   constructor() {
     this.character = new Character();
+
+    // Sync initial selections with character data
     this.currentSelections = {
-      bodyType: 0,
-      feature01Type: 0,
-      feature02Type: 0,
-      feature03Type: 0,
-      feature04Type: 0,
-      feature05Type: 0,
-      colorType: 1,
+      bodyType: this.character.getProperty("bodyType"),
+      feature01Type: this.character.getProperty("feature01Type"),
+      feature02Type: this.character.getProperty("feature02Type"),
+      feature03Type: this.character.getProperty("feature03Type"),
+      feature04Type: this.character.getProperty("feature04Type"),
+      feature05Type: this.character.getProperty("feature05Type"),
+      colorType: this.character.getProperty("colorType"),
     };
 
     this.initializeElements();
@@ -28,6 +30,7 @@ export class CharacterBuilder {
     this.characterDisplay = document.getElementById("character-display");
     this.backToStartBtn = document.getElementById("back-to-start-btn");
     this.startQuizBtn = document.getElementById("start-quiz-btn");
+    this.randomizeBtn = document.getElementById("randomize-btn");
     this.nameInput = document.getElementById("character-name-input");
 
     this.featureArrows = document.querySelectorAll(".feature-arrow");
@@ -45,6 +48,10 @@ export class CharacterBuilder {
 
     this.startQuizBtn.addEventListener("click", () => {
       this.onStartQuiz();
+    });
+
+    this.randomizeBtn.addEventListener("click", () => {
+      this.randomizeCharacter();
     });
 
     this.setupArrowListeners();
@@ -102,6 +109,9 @@ export class CharacterBuilder {
    * @param {number} direction - Direction (-1 for previous, 1 for next)
    */
   navigateFeature(type, direction) {
+    // Add transition effect
+    this.characterDisplay.classList.add("transitioning");
+
     const options = this.getOptionsForType(type);
     const currentIndex = this.currentSelections[type];
     const newIndex =
@@ -109,6 +119,11 @@ export class CharacterBuilder {
 
     this.currentSelections[type] = newIndex;
     this.character.updateProperty(type, newIndex);
+
+    // Remove transition class after animation
+    setTimeout(() => {
+      this.characterDisplay.classList.remove("transitioning");
+    }, 300);
   }
 
   /**
@@ -269,6 +284,37 @@ export class CharacterBuilder {
         detail: { character: this.character.getAllData() },
       })
     );
+  }
+
+  /**
+   * Randomize character features
+   */
+  randomizeCharacter() {
+    // Add transition class for smooth animation
+    this.characterDisplay.classList.add("transitioning");
+
+    // Randomize character data
+    this.character.randomize();
+
+    // Update current selections to match
+    this.currentSelections.bodyType = this.character.getProperty("bodyType");
+    this.currentSelections.feature01Type =
+      this.character.getProperty("feature01Type");
+    this.currentSelections.feature02Type =
+      this.character.getProperty("feature02Type");
+    this.currentSelections.feature03Type =
+      this.character.getProperty("feature03Type");
+    this.currentSelections.feature04Type =
+      this.character.getProperty("feature04Type");
+    this.currentSelections.feature05Type =
+      this.character.getProperty("feature05Type");
+    this.currentSelections.colorType = this.character.getProperty("colorType");
+
+    // Update the preview after a brief delay for animation
+    setTimeout(() => {
+      this.updateCharacterPreview();
+      this.characterDisplay.classList.remove("transitioning");
+    }, 150);
   }
 
   /**

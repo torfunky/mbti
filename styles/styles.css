@@ -14,13 +14,6 @@ CSS
   --key-color-2: #7bad83;
   --key-color-3: #99c7d4;
 
-  --main-bg: yellow;
-  --main-text: orange;
-  --key-color-light: purple;
-
-  --trait-bg: pink;
-  --score-bg: blue;
-
   --font-sm: 0.8rem;
   --font-base: 1rem;
   --font-xl: 2rem;
@@ -336,11 +329,11 @@ QUIZ SCREEN
 
 .question-text .mini-character {
   position: absolute;
-  bottom: 10px;
+  bottom: -20px;
   left: 50%;
   transform: translateX(-50%);
-  width: 80px;
-  height: 80px;
+  width: 156px;
+  height: 187.2px;
   pointer-events: none;
 }
 
@@ -351,6 +344,7 @@ QUIZ SCREEN
   width: 100%;
   height: 100%;
   object-fit: contain;
+  object-position: center;
 }
 
 /* ANSWER BUTTONS */
@@ -468,38 +462,35 @@ RESULTS SCREEN
   margin: 0 auto;
 }
 
+/* Character Display - Results Screen */
 .personality-image {
   margin: var(--space-4) 0;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.personality-image img {
-  max-width: 80px;
-  height: auto;
-  display: block;
-  margin: 0 auto;
-  opacity: 0.8;
+  /* background-color: red; */
 }
 
 .user-character-display {
-  width: 160px;
-  height: 120px;
+  width: 180px;
+  height: 180px;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: visible;
+  margin: 0 auto;
 }
 
 .user-character-display .character-layer {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%) scale(1.5);
-  width: 100%;
-  height: 100%;
+  transform: translate(-50%, -50%);
+  width: 160px;
+  /* height: 216px; */
+  object-fit: contain;
+  object-position: center;
 }
 
 .personality-scores {
@@ -512,7 +503,7 @@ RESULTS SCREEN
   flex-direction: row;
   gap: 30px;
   margin-bottom: 20px;
-  margin-top: -8px;
+  /* margin-top: -8px; */
   max-width: 100%;
   width: 100%;
   justify-content: center;
@@ -520,25 +511,27 @@ RESULTS SCREEN
 
 .compatibility-item {
   text-align: center;
-  padding: var(--space-3) var(--space-2);
+  padding: var(--space-2) var(--space-2);
   background: var(--main-white);
   border-radius: 20px;
   border: 2px dashed var(--main-theme-3);
-  min-height: 140px;
+  min-height: 180px;
+  max-height: 200px;
   min-width: 130px;
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  gap: 8px;
 }
 
 .compatibility-character {
-  width: 80px;
-  height: 80px;
+  width: 120px;
+  height: 148px;
   position: relative;
   flex-shrink: 0;
+  margin-top: -15px;
+  margin-bottom: -15px;
 }
 
 .compatibility-character .character-layer {
@@ -548,6 +541,7 @@ RESULTS SCREEN
   width: 100%;
   height: 100%;
   object-fit: contain;
+  object-position: center;
 }
 
 .compatibility-item p {
@@ -555,6 +549,7 @@ RESULTS SCREEN
   font-weight: var(--font-mono);
   color: var(--key-color);
   margin: 0;
+  line-height: 1.3;
 }
 
 .compatibility-buttons {
@@ -606,18 +601,23 @@ RESULTS SCREEN
 }
 
 .pie-chart-wrapper {
+  --pie-wrapper-size: 100px;
+  --pie-chart-size: 60px;
+  --pie-center: calc(var(--pie-wrapper-size) / 2);
+  --pie-radius: calc(var(--pie-chart-size) / 2 - 2px);
+
   order: 1;
   position: relative;
-  width: 140px;
-  height: 140px;
+  width: var(--pie-wrapper-size);
+  height: var(--pie-wrapper-size);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .pie-chart {
-  width: 80px;
-  height: 80px;
+  width: var(--pie-chart-size);
+  height: var(--pie-chart-size);
   border-radius: 50%;
   position: relative;
   margin: 0 auto;
@@ -630,12 +630,12 @@ RESULTS SCREEN
 
 .pie-label {
   position: absolute;
-  font-size: var(--font-sm);
+  font-size: 0.8rem;
   font-weight: var(--font-semibold);
   color: var(--key-color);
   background: var(--main-theme-2);
-  padding: 3px 6px;
-  border-radius: 15px;
+  padding: 2px 5px;
+  border-radius: 10px;
   border: 1px solid var(--main-theme-3);
   white-space: nowrap;
   z-index: 3;
