@@ -383,6 +383,12 @@ class MBTIQuiz {
     this.personalityCode.textContent =
       MBTI_TYPES[personalityType]?.label || personalityType;
 
+    // Display MBTI type label under character
+    const mbtiTypeLabel = document.getElementById("mbti-type-label");
+    if (mbtiTypeLabel) {
+      mbtiTypeLabel.textContent = personalityType;
+    }
+
     // Create personality name from individual traits
     const traits = [
       this.scores.E >= this.scores.I ? RESULT_OPTIONS.E : RESULT_OPTIONS.I,
@@ -510,141 +516,83 @@ class MBTIQuiz {
     ];
 
     scorePairs.forEach(([trait1, trait2]) => {
-      const chartElement = document.createElement("div");
-      chartElement.className = "pie-chart-item";
+      const barElement = document.createElement("div");
+      barElement.className = "progress-bar-item";
 
       const total = this.scores[trait1] + this.scores[trait2];
       const percentage1 =
         total > 0 ? Math.round((this.scores[trait1] / total) * 100) : 50;
       const percentage2 = 100 - percentage1;
 
-      // Determine dominant trait and percentage
-      const dominantTrait = percentage1 >= percentage2 ? trait1 : trait2;
-      const dominantPercentage = Math.max(percentage1, percentage2);
-      const anglePercentage = (dominantPercentage / 100) * 360;
+      // Generate labels, hiding 0% values
+      let label1HTML =
+        percentage1 > 0
+          ? `<div class="pie-label" style="left: ${
+              percentage1 / 2
+            }%;">${percentage1}%</div>`
+          : "";
+      let label2HTML =
+        percentage2 > 0
+          ? `<div class="pie-label" style="left: ${
+              percentage1 + percentage2 / 2
+            }%;">${percentage2}%</div>`
+          : "";
 
-      const angle1 = (percentage1 / 100) * 360;
-
-      // Calculate center angles for each section
-      const trait1CenterAngle = angle1 / 2; // Center of first section
-      const trait2CenterAngle = angle1 + (360 - angle1) / 2; // Center of second section
-
-      // Convert to radians and adjust so 0° is at top
-      const trait1Rad = ((trait1CenterAngle - 90) * Math.PI) / 180;
-      const trait2Rad = ((trait2CenterAngle - 90) * Math.PI) / 180;
-
-      // Get CSS custom properties for scalable dimensions
-      const computedStyle = getComputedStyle(document.documentElement);
-      const wrapperSize =
-        parseInt(computedStyle.getPropertyValue("--pie-wrapper-size")) || 100;
-      const chartSize =
-        parseInt(computedStyle.getPropertyValue("--pie-chart-size")) || 60;
-      const center = wrapperSize / 2;
-      const pieRadius = chartSize / 2 - 2; // Pie chart radius minus border
-
-      const trait1StartX = Math.cos(trait1Rad) * pieRadius;
-      const trait1StartY = Math.sin(trait1Rad) * pieRadius;
-      const trait2StartX = Math.cos(trait2Rad) * pieRadius;
-      const trait2StartY = Math.sin(trait2Rad) * pieRadius;
-
-      // Handle label positioning and visibility (scale with wrapper size)
-      const verticalOffset = wrapperSize * 0.36; // Distance from center (32% of wrapper)
-      let trait1LabelX, trait1LabelY, trait2LabelX, trait2LabelY;
-      let showTrait1 = percentage1 > 0;
-      let showTrait2 = percentage2 > 0;
-
-      if (percentage1 === 100 || percentage2 === 100) {
-        // For 100% cases, center the label with no line
-        if (percentage1 === 100) {
-          trait1LabelX = 0; // Center horizontally
-          trait1LabelY = 0; // Center vertically
-        }
-        if (percentage2 === 100) {
-          trait2LabelX = 0; // Center horizontally
-          trait2LabelY = 0; // Center vertically
-        }
-      } else {
-        // Normal flip-flop positioning - separate labels vertically
-        trait1LabelX = Math.cos(trait1Rad) * (pieRadius + 25);
-        trait1LabelY = -verticalOffset; // Above pie chart
-        trait2LabelX = Math.cos(trait2Rad) * (pieRadius + 25);
-        trait2LabelY = verticalOffset; // Below pie chart
-      }
-
-      // Calculate line end points only for visible labels (and not for 100% cases)
-      let linesHTML = "";
-      let labelsHTML = "";
-
-      if (showTrait1) {
-        // Only add line if it's not a 100% case
-        if (percentage1 !== 100) {
-          const trait1EndX = trait1LabelX - Math.cos(trait1Rad) * 8;
-          const trait1EndY = trait1LabelY - Math.sin(trait1Rad) * 8;
-
-          linesHTML += `<line x1="${center + trait1StartX}" y1="${
-            center + trait1StartY
-          }" 
-                             x2="${center + trait1EndX}" y2="${
-            center + trait1EndY
-          }" 
-                             stroke="var(--key-color)" stroke-width="1.5"/>`;
-        }
-
-        labelsHTML += `<div class="pie-label trait1" style="
-                         left: ${center + trait1LabelX}px; 
-                         top: ${center + trait1LabelY}px;
-                         transform: translate(-50%, -50%);
-                       ">
-                         ${percentage1}% ${RESULT_OPTIONS[trait1].label}
-                       </div>`;
-      }
-
-      if (showTrait2) {
-        // Only add line if it's not a 100% case
-        if (percentage2 !== 100) {
-          const trait2EndX = trait2LabelX - Math.cos(trait2Rad) * 8;
-          const trait2EndY = trait2LabelY - Math.sin(trait2Rad) * 8;
-
-          linesHTML += `<line x1="${center + trait2StartX}" y1="${
-            center + trait2StartY
-          }" 
-                             x2="${center + trait2EndX}" y2="${
-            center + trait2EndY
-          }" 
-                             stroke="var(--key-color)" stroke-width="1.5"/>`;
-        }
-
-        labelsHTML += `<div class="pie-label trait2" style="
-                         left: ${center + trait2LabelX}px; 
-                         top: ${center + trait2LabelY}px;
-                         transform: translate(-50%, -50%);
-                       ">
-                         ${percentage2}% ${RESULT_OPTIONS[trait2].label}
-                       </div>`;
-      }
-
-      chartElement.innerHTML = `
-        <div class="pie-chart-wrapper">
-          <div class="pie-chart" 
-               style="--percentage1-angle: ${angle1}deg;">
-          </div>
-          <svg class="pie-lines" width="140" height="140" style="position: absolute; top: 0; left: 0; pointer-events: none;">
-            ${linesHTML}
-          </svg>
-          <div class="pie-chart-labels">
-            ${labelsHTML}
-          </div>
+      barElement.innerHTML = `
+        <div class="progress-label-left">${RESULT_OPTIONS[trait1].label}</div>
+        <div class="progress-bar-wrapper">
+          <div class="progress-bar" style="--percentage1: ${percentage1}%;"></div>
+          ${label1HTML}
+          ${label2HTML}
         </div>
+        <div class="progress-label-right">${RESULT_OPTIONS[trait2].label}</div>
       `;
-      this.scoresList.appendChild(chartElement);
+
+      this.scoresList.appendChild(barElement);
     });
+
+    // Add MBTI description
+    this.displayMBTIDescription();
+  }
+
+  displayMBTIDescription() {
+    const personalityType = this.getPersonalityType();
+    const descriptionContainer = document.getElementById(
+      "mbti-description-text"
+    );
+
+    if (descriptionContainer) {
+      const typeData = MBTI_TYPES[personalityType];
+      descriptionContainer.innerHTML = `
+        <p><strong>PRO:</strong> ${typeData?.pros || "Not available"}</p>
+        <p><strong>CON:</strong> ${typeData?.cons || "Not available"}</p>
+        <p> ${typeData?.fact || "Not available"}</p>
+      `;
+    }
   }
 
   restartQuiz() {
-    // Reset character data
+    // Reset quiz state
+    this.currentQuestionIndex = 0;
+    this.answers = [];
+    this.scores = {
+      E: 0,
+      I: 0,
+      S: 0,
+      N: 0,
+      T: 0,
+      F: 0,
+      J: 0,
+      P: 0,
+    };
+
+    // Reset and randomize character
     if (this.characterBuilder && this.characterBuilder.getCharacter()) {
       this.characterBuilder.getCharacter().reset();
+      // Force refresh of character builder display
+      this.characterBuilder.refreshDisplay();
     }
+
     this.userCharacter = null;
     this.showStartScreen();
   }

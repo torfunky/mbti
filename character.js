@@ -53,12 +53,21 @@ export class Character {
    * Reset character to defaults
    */
   reset() {
+    // Clear session storage first
+    this.clearSession();
+
+    // Generate fresh random character
     this.data = {
       name: "",
-      bodyType: 0,
-      feature01Type: 0,
-      feature02Type: 0,
+      bodyType: Math.floor(Math.random() * 3), // 0-2 for 3 body shapes
+      feature01Type: Math.floor(Math.random() * 5), // 0-4 for 5 features
+      feature02Type: Math.floor(Math.random() * 5),
+      feature03Type: Math.floor(Math.random() * 5),
+      feature04Type: Math.floor(Math.random() * 5),
+      feature05Type: Math.floor(Math.random() * 5),
+      colorType: Math.floor(Math.random() * 6) + 1, // 1-6 for colors
     };
+
     this.saveToSession();
     this.notifyListeners("reset");
   }

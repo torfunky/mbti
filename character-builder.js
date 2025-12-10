@@ -39,6 +39,24 @@ export class CharacterBuilder {
   }
 
   /**
+   * Force refresh of character builder display
+   */
+  refreshDisplay() {
+    // Update current selections to match character data
+    this.currentSelections = {
+      bodyType: this.character.getProperty("bodyType"),
+      feature01Type: this.character.getProperty("feature01Type"),
+      feature02Type: this.character.getProperty("feature02Type"),
+      feature03Type: this.character.getProperty("feature03Type"),
+      feature04Type: this.character.getProperty("feature04Type"),
+      feature05Type: this.character.getProperty("feature05Type"),
+      colorType: this.character.getProperty("colorType"),
+    };
+
+    this.updateCharacterPreview();
+  }
+
+  /**
    * Setup event listeners for character builder interactions
    */
   setupEventListeners() {

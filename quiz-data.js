@@ -94,7 +94,7 @@ export const QUIZ_QUESTIONS = [
   {
     id: 5,
     question:
-      "You and your partner or close friend are in a fight. How do you resolve this conflict?",
+      "You and your friend are in a fight. How do you resolve this conflict?",
     image: "image5.png",
     answers: [
       {
@@ -392,114 +392,162 @@ export const RESULT_OPTIONS = {
 
 export const MBTI_TYPES = {
   ISTJ: {
-    label: "the Logistician",
+    label: "Tottenham Hotspur",
     compatible: "ISTP, 70%",
     incompatible: "ENFP, 18%",
     image: "ISTJ.png",
+    pros: "You’re a down to earth sort of person. People can rely and trust your character.",
+    cons: "You are no Dominik Szoboszlai. Sorry.",
+    fact: "TBD",
   },
 
   ISFJ: {
-    label: "the Defender",
+    label: "Frankenstein’s Monster",
     compatible: "INFJ, 85%",
     incompatible: "ENFP, 12%",
     image: "ISFJ.png",
+    pros: "You’re misunderstood! You care deeply and protect those you love. You might take it too far sometimes…",
+    cons: "You need to go to therapy and stop repressing your feelings. It’s tiresome for everyone involved.",
+    fact: "TBD",
   },
 
   INFJ: {
-    label: "the Advocate",
+    label: "Orcchiette",
     compatible: "INFJ, 86%",
     incompatible: "ESTP, 5%",
     image: "INFJ.png",
+    pros: "Translating to “Little Ear”, you are potentially very awesome. Keep posting those Instagram stories about social justice!",
+    cons: "I know you’re trying, but you really need to commit to your Amazon boycott.",
+    fact: "TBD",
   },
 
   INTJ: {
-    label: "the Architect",
+    label: "Victor Frankenstein",
     compatible: "INTP, 89%",
     incompatible: "ESFP, 22%",
     image: "INTJ.png",
+    pros: "You’re smart, and love to work out an out-of-the-box solution.",
+    cons: "You probably should work on your emotional intelligence!",
+    fact: "TBD",
   },
 
   ISTP: {
-    label: "the Virtuoso",
+    label: "Addison Rae’s Self-Titled Album “Addison”",
     compatible: "ISTJ, 62%",
     incompatible: "ENFJ, 9%",
     image: "ISTP.png",
+    pros: "You could probably make an awesome table if you wanted to. And tell everyone you know.",
+    cons: "I bet your Spotify Wrapped top artists were all men. I know Addison Rae is a woman, but you should try out her album.",
+    fact: "TBD",
   },
 
   ISFP: {
-    label: "the Adventurer",
+    label: "Mrs. Dalloway",
     compatible: "ISFJ, 76%",
     incompatible: "ENTJ, 6%",
     image: "ISFP.png",
+    pros: "You are an extremely charming individual. Your kindness and sensitivity probably mean more to others than you realize!",
+    cons: "I’m trusting you know who Virginia Woolf is. If not, pick up a book. Also, you might have low self esteem. Hard to hear. Sorry.",
+    fact: "TBD",
   },
 
   INFP: {
-    label: "the Mediator",
+    label: "HR",
     compatible: "INFJ, 85%",
     incompatible: "ESTJ, 14%",
     image: "INFP.png",
+    pros: "You have a planner.",
+    cons: "You NEED to get out of the situationship you’re most likely in right now. They’re not texting you because they don’t actually like you. Trust me!",
+    fact: "TBD",
   },
 
   INTP: {
-    label: "the Thinker",
+    label: "Borscht",
     compatible: "ENTJ, 96%",
     incompatible: "ESFJ, 39%",
     image: "INTP.png",
+    pros: "You are unique I suppose.",
+    cons: "You are so avoidantly attached it’s a little crazy.",
+    fact: "TBD",
   },
 
   ESTP: {
-    label: "the Entrepreneur",
+    label: "Aron Ralston (Derogatory)",
     compatible: "ISTP, 62%",
     incompatible: "INFJ, 5%",
     image: "ESTP.png",
+    pros: "Ugh.",
+    cons: "You need to go to the dentist twice a year, seriously.",
+    fact: "TBD",
   },
 
   ESFP: {
-    label: "the Entertainer",
+    label: "Labubu",
     compatible: "ENFP, 93%",
     incompatible: "INTJ, 22%",
     image: "ESFP.png",
+    pros: "’m having a hard time finding a pro!",
+    cons: "Do you find that other cars try to avoid being close to yours on the freeway?",
+    fact: "TBD",
   },
 
   ENFP: {
-    label: "the Campaigner",
+    label: "Spix’s Macaw",
     compatible: "ENTJ, 97%",
     incompatible: "ISTP, 14%",
     image: "ENFP.png",
+    pros: "You’ve got a “zest for life” apparently.",
+    cons: "You should probably plan for the future a bit more. That 401K isn’t gonna happen by itself. Were you babied for a while by your parents?",
+    fact: "TBD",
   },
 
   ENTP: {
-    label: "the Debater",
+    label: "Dogberry",
     compatible: "ENFP, 94%",
     incompatible: "ISTJ, 11%",
     image: "ENTP.png",
+    pros: "You’re creative! You’re not meant for a desk job. Get out there and create!",
+    cons: "You might have been more annoying than you hoped in Socratic Seminars in high school.",
+    fact: "TBD",
   },
 
   ESTJ: {
-    label: "the Executive",
+    label: "Karen I Guess",
     compatible: "ISTJ, 79%",
     incompatible: "INFP, 14%",
     image: "ESTJ.png",
+    pros: "You are sooooo organized.",
+    cons: "You might be overly concerned with others’ opinions of you. Have you seen the shows “I Love LA” or “Entourage”?",
+    fact: "TBD",
   },
 
   ESFJ: {
-    label: "the Consul",
+    label: "Timothee Chalamet’s Portrayal of Willy Wonka (2023)",
     compatible: "ENFP, 93%",
     incompatible: "ISTP, 19%",
     image: "ESFJ.png",
+    pros: "You probably were permanently affected by Sally Rooney’s “Normal People”.",
+    cons: "Apparently you’re too needy. LOL!",
+    fact: "TBD",
   },
 
   ENFJ: {
-    label: "the Protagonist",
+    label: "Carlsberg Lager",
     compatible: "ENFP, 91%",
     incompatible: "ISTP, 9%",
     image: "ENFJ.png",
+    pros: "You think you’re that girl and you are!",
+    cons: "In spite of being that girl, humility goes a long way. Let’s find it!",
+    fact: "TBD",
   },
 
   ENTJ: {
-    label: "the Vanguard",
+    label: "O’ Captain My Captain",
     compatible: "INTJ, 97%",
     incompatible: "INFP, 24%",
     image: "ENTJ.png",
+    pros: "You probably loved Good Will Hunting.",
+    cons: "It’s time to dig deep: Do you unconsciously promote the agenda of a patriarchal society?",
+    fact: "TBD",
   },
 };

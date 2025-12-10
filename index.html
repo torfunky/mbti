@@ -21,8 +21,8 @@
   <body>
     <div class="container">
       <div id="start-screen" class="screen active">
-        <h2>personality quiz</h2>
-        <p>- in prog -</p>
+        <h2>Personality Quiz</h2>
+        <!-- <p>Quiz and dev by Reiley Nymeyer Design by Phoebe Zheng ツ</p> -->
         <button id="start-btn" class="btn primary">start</button>
       </div>
 
@@ -30,7 +30,7 @@
         <div class="character-builder-container">
           <div class="character-name-section">
             <h1>
-              my name is
+              My name is
               <input
                 type="text"
                 id="character-name-input"
@@ -162,26 +162,32 @@
               class="user-character-display"
             ></div>
           </div>
+          <!-- <div id="mbti-type-label" class="mbti-type-label"></div> -->
 
           <div class="personality-scores">
-            <div id="scores-list" class="pie-charts-container"></div>
+            <div id="scores-list" class="progress-bars-container"></div>
+            <div class="mbti-description-container">
+              <div id="mbti-description-text"></div>
+            </div>
           </div>
 
           <div class="compatibility-section">
             <div class="compatibility-item">
               <h3>friends with</h3>
-              <div
-                class="compatibility-character"
-                id="compatible-character"
-              ></div>
+              <!-- <img
+                class="compatibility-placeholder"
+                src="assets/other-assets/friends.png"
+                alt="Friends compatibility"
+              /> -->
               <p id="compatible-type"></p>
             </div>
             <div class="compatibility-item">
               <h3>wary of</h3>
-              <div
-                class="compatibility-character"
-                id="incompatible-character"
-              ></div>
+              <!-- <img
+                class="compatibility-placeholder"
+                src="assets/other-assets/wary.png"
+                alt="Wary compatibility"
+              /> -->
               <p id="incompatible-type"></p>
             </div>
           </div>
@@ -201,7 +207,10 @@
     </div>
 
     <footer class="universal-footer">
-      <p>quiz and dev by reiley nymeyer design by phoebe zheng ツ</p>
+      <p>quiz and dev by reiley nymeyer</p>
+      <p>design by phoebe zheng</p>
+      <p>results copy by haysie chung</p>
+      <!-- <p>ツ</p> -->
     </footer>
 
     <script type="module" src="script.js"></script>

@@ -2,6 +2,107 @@
 CSS 
 **/
 
+/* Font Definitions */
+@font-face {
+  font-family: "Excon";
+  src: url("../assets/fonts/Excon_Complete/Fonts/WEB/fonts/Excon-Regular.woff2")
+      format("woff2"),
+    url("../assets/fonts/Excon_Complete/Fonts/WEB/fonts/Excon-Regular.woff")
+      format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Excon";
+  src: url("../assets/fonts/Excon_Complete/Fonts/WEB/fonts/Excon-Medium.woff2")
+      format("woff2"),
+    url("../assets/fonts/Excon_Complete/Fonts/WEB/fonts/Excon-Medium.woff")
+      format("woff");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Excon";
+  src: url("../assets/fonts/Excon_Complete/Fonts/WEB/fonts/Excon-Bold.woff2")
+      format("woff2"),
+    url("../assets/fonts/Excon_Complete/Fonts/WEB/fonts/Excon-Bold.woff")
+      format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Pally";
+  src: url("../assets/fonts/Pally_Complete/Fonts/WEB/fonts/Pally-Regular.woff2")
+      format("woff2"),
+    url("../assets/fonts/Pally_Complete/Fonts/WEB/fonts/Pally-Regular.woff")
+      format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Pally";
+  src: url("../assets/fonts/Pally_Complete/Fonts/WEB/fonts/Pally-Medium.woff2")
+      format("woff2"),
+    url("../assets/fonts/Pally_Complete/Fonts/WEB/fonts/Pally-Medium.woff")
+      format("woff");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Pally";
+  src: url("../assets/fonts/Pally_Complete/Fonts/WEB/fonts/Pally-Bold.woff2")
+      format("woff2"),
+    url("../assets/fonts/Pally_Complete/Fonts/WEB/fonts/Pally-Bold.woff")
+      format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("../assets/fonts/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Regular.woff2")
+      format("woff2"),
+    url("../assets/fonts/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Regular.woff")
+      format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("../assets/fonts/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Medium.woff2")
+      format("woff2"),
+    url("../assets/fonts/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Medium.woff")
+      format("woff");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src: url("../assets/fonts/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Bold.woff2")
+      format("woff2"),
+    url("../assets/fonts/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Bold.woff")
+      format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Tanker";
+  src: url("../assets/fonts/Tanker_Complete/Tanker_Complete/Fonts/WEB/fonts/Tanker-Regular.woff2")
+      format("woff2"),
+    url("../assets/fonts/Tanker_Complete/Tanker_Complete/Fonts/WEB/fonts/Tanker-Regular.woff")
+      format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
 :root {
   --main-theme-1: #bbcfbe;
   --main-theme-2: #e9f3f4;
@@ -20,6 +121,10 @@ CSS
 
   --font-mono: "adelle-mono", "Adelle Mono", "SF Mono", "Monaco", "Inconsolata",
     "Fira Code", monospace;
+  --font-excon: "Excon", sans-serif;
+  --font-pally: "Pally", serif;
+  --font-satoshi: "Satoshi", sans-serif;
+  --font-tanker: "Tanker", sans-serif;
 
   --font-normal: 400;
   --font-semibold: 600;
@@ -35,7 +140,7 @@ CSS
 
 body {
   background-color: var(--main-theme-1);
-  font-family: var(--font-mono);
+  font-family: var(--font-satoshi);
   line-height: 1.7;
   color: var(--main-theme-3);
   font-size: var(--font-sm);
@@ -52,16 +157,29 @@ body {
 }
 
 h1 {
+  font-family: var(--font-pally);
+  text-transform: none;
   font-size: var(--font-xl);
   font-weight: var(--font-bold);
   color: var(--main-theme-3);
   margin-bottom: var(--space-5);
 }
 h2 {
+  font-family: var(--font-pally);
+  text-transform: none;
   font-size: var(--font-xl);
   font-weight: var(--font-bold);
   color: var(--main-theme-3);
   margin-bottom: var(--space-2);
+}
+
+#personality-code {
+  font-size: clamp(1.2rem, 4vw, 2rem);
+  line-height: 1.2;
+  word-wrap: break-word;
+  hyphens: auto;
+  max-width: 100%;
+  text-align: center;
 }
 h3 {
   font-size: var(--font-sm);
@@ -72,7 +190,7 @@ h3 {
 h4,
 h5,
 h6 {
-  font-family: var(--font-mono);
+  font-family: var(--font-satoshi);
   font-weight: var(--font-semibold);
   letter-spacing: -0.01em;
 }
@@ -142,8 +260,7 @@ h6 {
 .btn {
   font-size: var(--font-sm);
   font-weight: var(--font-normal);
-  font-family: var(--font-mono);
-  text-transform: uppercase;
+  font-family: var(--font-satoshi);
   letter-spacing: 0.02em;
   display: flex;
   align-items: center;
@@ -314,11 +431,10 @@ QUIZ SCREEN
   position: relative;
   box-sizing: border-box;
 
-  font-size: var(--font-base);
+  font-size: 1.3rem;
   line-height: 1.4;
   word-wrap: break-word;
   hyphens: auto;
-  margin: 0;
   text-align: center;
   overflow: hidden;
   display: -webkit-box;
@@ -368,7 +484,6 @@ QUIZ SCREEN
 }
 
 .answer-btn {
-  text-transform: uppercase;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -379,16 +494,16 @@ QUIZ SCREEN
   border-radius: 30px;
   background: transparent;
   color: var(--main-theme-3);
-  font-size: 12px;
-  font-weight: var(--font-normal);
-  font-family: var(--font-mono);
+  font-size: var(--font-sm);
+  font-weight: 500;
+  font-family: var(--font-pally);
+  text-transform: none;
   letter-spacing: 0.02em;
   cursor: pointer;
   transition: all 0.2s ease;
   text-align: center;
   line-height: 1.3;
-  word-wrap: break-word;
-  hyphens: auto;
+  word-wrap: normal;
 }
 
 .answer-btn:hover:not(:disabled),
@@ -460,6 +575,7 @@ RESULTS SCREEN
 
 .result-content {
   margin: 0 auto;
+  max-width: 500px;
 }
 
 /* Character Display - Results Screen */
@@ -468,7 +584,6 @@ RESULTS SCREEN
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background-color: red; */
 }
 
 .user-character-display {
@@ -503,10 +618,16 @@ RESULTS SCREEN
   flex-direction: row;
   gap: 30px;
   margin-bottom: 20px;
-  /* margin-top: -8px; */
-  max-width: 100%;
-  width: 100%;
+  height: 80px;
   justify-content: center;
+}
+
+.compatibility-section h3 {
+  width: 100%;
+  margin-bottom: 1%;
+  /* font-size: var(--font-sm); */
+  /* font-weight: var(--font-bold); */
+  /* color: var(--key-color); */
 }
 
 .compatibility-item {
@@ -515,9 +636,10 @@ RESULTS SCREEN
   background: var(--main-white);
   border-radius: 20px;
   border: 2px dashed var(--main-theme-3);
-  min-height: 180px;
-  max-height: 200px;
+  /* min-height: 120px;
+  max-height: 120px; */
   min-width: 130px;
+  max-width: 200px;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -542,6 +664,16 @@ RESULTS SCREEN
   height: 100%;
   object-fit: contain;
   object-position: center;
+}
+
+.compatibility-placeholder {
+  width: 100px;
+  height: 50px;
+  background-color: var(--main-theme-1);
+  object-fit: contain;
+  flex-shrink: 0;
+  margin-bottom: 2%;
+  /* margin: var(--space-2) 0; */
 }
 
 .compatibility-item p {
@@ -586,60 +718,131 @@ RESULTS SCREEN
   margin-bottom: 16px;
 }
 
-.pie-charts-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-}
-
-.pie-chart-item {
+.progress-bars-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  position: relative;
-  padding: 0 var(--space-1);
+  gap: var(--space-3);
+  margin-bottom: var(--space-6);
 }
 
-.pie-chart-wrapper {
-  --pie-wrapper-size: 100px;
-  --pie-chart-size: 60px;
-  --pie-center: calc(var(--pie-wrapper-size) / 2);
-  --pie-radius: calc(var(--pie-chart-size) / 2 - 2px);
-
-  order: 1;
-  position: relative;
-  width: var(--pie-wrapper-size);
-  height: var(--pie-wrapper-size);
+.progress-bar-item {
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: var(--space-3);
 }
 
-.pie-chart {
-  width: var(--pie-chart-size);
-  height: var(--pie-chart-size);
-  border-radius: 50%;
-  position: relative;
-  margin: 0 auto;
-  background: conic-gradient(
-    var(--key-color-3) 0deg var(--percentage1-angle, 180deg),
-    var(--key-color-2) var(--percentage1-angle, 180deg) 360deg
-  );
+.progress-label-left {
+  font-size: var(--font-sm);
+  font-weight: var(--font-semibold);
+  color: var(--key-color);
+  min-width: 100px;
+  text-align: right;
+}
+
+.progress-bar-wrapper {
+  width: 500px;
+  height: 24px;
+  background: var(--main-theme-2);
   border: 2px solid var(--main-theme-3);
+  border-radius: 25px;
+  overflow: visible;
+  position: relative;
 }
 
-.pie-label {
+.progress-bar {
+  height: 100%;
+  display: flex;
+  background: linear-gradient(
+    to right,
+    var(--key-color-3) 0%,
+    var(--key-color-3) var(--percentage1, 50%),
+    var(--key-color-2) var(--percentage1, 50%),
+    var(--key-color-2) 100%
+  );
+  transition: all 0.3s ease;
+  border-radius: 22px;
+}
+
+.progress-label-right {
+  font-size: var(--font-sm);
+  font-weight: var(--font-semibold);
+  color: var(--key-color);
+  min-width: 100px;
+  text-align: left;
+}
+
+.progress-percentage {
   position: absolute;
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: var(--font-semibold);
   color: var(--key-color);
   background: var(--main-theme-2);
   padding: 2px 5px;
-  border-radius: 10px;
+  border-radius: 8px;
   border: 1px solid var(--main-theme-3);
   white-space: nowrap;
   z-index: 3;
   line-height: 1;
+  transform: translate(-50%, -50%);
+  top: 50%;
+}
+
+.mbti-description-container {
+  background: var(--main-white);
+  border: 2px solid var(--main-theme-3);
+  border-radius: 15px;
+  padding: var(--space-4);
+  margin-top: var(--space-3);
+  text-align: left;
+  /* width: 90%; */
+}
+
+.mbti-description-container h3 {
+  margin-bottom: var(--space-2);
+  font-size: var(--font-sm);
+  font-weight: var(--font-bold);
+}
+
+.mbti-description-container p {
+  margin: 0;
+  line-height: 1.5;
+  color: var(--key-color);
+  font-size: 0.9rem;
+  text-transform: none;
+}
+
+.pie-label {
+  position: absolute;
+  font-size: 0.75rem;
+  font-weight: var(--font-semibold);
+  color: var(--key-color);
+  background: var(--main-theme-2);
+  padding: 2px 5px;
+  border-radius: 8px;
+  border: 1px solid var(--main-theme-3);
+  white-space: nowrap;
+  z-index: 3;
+  line-height: 1;
+  transform: translate(-50%, -50%);
+  top: 50%;
+}
+
+.mbti-type-label {
+  font-size: 0.9rem;
+  font-weight: var(--font-semibold);
+  color: var(--key-color);
+  background: var(--main-theme-2);
+  padding: 4px 8px;
+  border-radius: 10px;
+  border: 1px solid var(--main-theme-3);
+  white-space: nowrap;
+  line-height: 1;
+  margin: var(--space-3) auto var(--space-4) auto;
+  display: block;
+  text-align: center;
+  width: fit-content;
+  /* top: -150px; */
 }
 
 /* Universal Footer */
