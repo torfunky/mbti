@@ -356,6 +356,14 @@ h6 {
   color: var(--main-theme-3);
 }
 
+/* Small button variant for top-right controls */
+.btn-small {
+  font-size: 0.7rem;
+  padding: var(--space-2) var(--space-4);
+  min-height: 35px;
+  border-radius: 20px;
+}
+
 /* /* /* /* /* 
 QUIZ SCREEN 
 /* */
@@ -620,6 +628,17 @@ RESULTS SCREEN
 #results-screen {
   text-align: center;
   padding: 40px 30px;
+  position: relative;
+}
+
+.results-controls-bottom {
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 15px;
+  z-index: 10;
 }
 
 .result-content {
@@ -802,11 +821,14 @@ RESULTS SCREEN
   background: var(--main-white);
   border: 2px solid var(--main-theme-3);
   border-radius: 15px;
-  padding: var(--space-2);
+  padding: var(--space-3);
   padding-left: var(--space-4);
   padding-right: var(--space-4);
   margin-top: var(--space-3);
+  width: 430px;
   text-align: left;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .mbti-description-container p {
@@ -814,6 +836,7 @@ RESULTS SCREEN
   line-height: 1.5;
   color: var(--key-color);
   text-transform: none;
+  font-size: var(--font-base);
 }
 
 .pie-label {
