@@ -398,7 +398,7 @@ export const MBTI_TYPES = {
     image: "ISTJ.png",
     pros: "You’re a down to earth sort of person. People can rely and trust your character.",
     cons: "You are no Dominik Szoboszlai. Sorry.",
-    fact: "TBD",
+    fact: "Most men are this MBTI type. Like Sting!",
   },
 
   ISFJ: {
@@ -408,7 +408,7 @@ export const MBTI_TYPES = {
     image: "ISFJ.png",
     pros: "You’re misunderstood! You care deeply and protect those you love. You might take it too far sometimes…",
     cons: "You need to go to therapy and stop repressing your feelings. It’s tiresome for everyone involved.",
-    fact: "TBD",
+    fact: "You are the most common MBTI type.",
   },
 
   INFJ: {
@@ -418,7 +418,7 @@ export const MBTI_TYPES = {
     image: "INFJ.png",
     pros: "Translating to “Little Ear”, you are potentially very awesome. Keep posting those Instagram stories about social justice!",
     cons: "I know you’re trying, but you really need to commit to your Amazon boycott.",
-    fact: "TBD",
+    fact: "You are the rarest MBTI type. And Aragorn is an INFJ. Soooooo.",
   },
 
   INTJ: {
@@ -428,7 +428,7 @@ export const MBTI_TYPES = {
     image: "INTJ.png",
     pros: "You’re smart, and love to work out an out-of-the-box solution.",
     cons: "You probably should work on your emotional intelligence!",
-    fact: "TBD",
+    fact: "You share an MBTI type with Elon Musk. Take that as you will.",
   },
 
   ISTP: {
@@ -438,7 +438,7 @@ export const MBTI_TYPES = {
     image: "ISTP.png",
     pros: "You could probably make an awesome table if you wanted to. And tell everyone you know.",
     cons: "I bet your Spotify Wrapped top artists were all men. I know Addison Rae is a woman, but you should try out her album.",
-    fact: "TBD",
+    fact: "Indiana Jones is an ISTP! Is it time for a career switch to archaeology?",
   },
 
   ISFP: {
@@ -448,7 +448,7 @@ export const MBTI_TYPES = {
     image: "ISFP.png",
     pros: "You are an extremely charming individual. Your kindness and sensitivity probably mean more to others than you realize!",
     cons: "I’m trusting you know who Virginia Woolf is. If not, pick up a book. Also, you might have low self esteem. Hard to hear. Sorry.",
-    fact: "TBD",
+    fact: "Prince was an ISFP. #goated.",
   },
 
   INFP: {
@@ -458,7 +458,7 @@ export const MBTI_TYPES = {
     image: "INFP.png",
     pros: "You have a planner.",
     cons: "You NEED to get out of the situationship you’re most likely in right now. They’re not texting you because they don’t actually like you. Trust me!",
-    fact: "TBD",
+    fact: "Fred Rogers (Mr. Rogers) was an INFP. This is a super green flag for you.",
   },
 
   INTP: {
@@ -468,7 +468,7 @@ export const MBTI_TYPES = {
     image: "INTP.png",
     pros: "You are unique I suppose.",
     cons: "You are so avoidantly attached it’s a little crazy.",
-    fact: "TBD",
+    fact: "Kafka was an INTP–shall we read “The Metamorphosis” and reflect?",
   },
 
   ESTP: {
@@ -478,7 +478,7 @@ export const MBTI_TYPES = {
     image: "ESTP.png",
     pros: "Ugh.",
     cons: "You need to go to the dentist twice a year, seriously.",
-    fact: "TBD",
+    fact: "You can come back from this. Megan Thee Stallion is an ESTP and look at her!",
   },
 
   ESFP: {
@@ -488,7 +488,7 @@ export const MBTI_TYPES = {
     image: "ESFP.png",
     pros: "’m having a hard time finding a pro!",
     cons: "Do you find that other cars try to avoid being close to yours on the freeway?",
-    fact: "TBD",
+    fact: "You share an MBTI type with Peregrin Took. It’s good to share characteristics with that wee Hobbit.",
   },
 
   ENFP: {
@@ -498,7 +498,7 @@ export const MBTI_TYPES = {
     image: "ENFP.png",
     pros: "You’ve got a “zest for life” apparently.",
     cons: "You should probably plan for the future a bit more. That 401K isn’t gonna happen by itself. Were you babied for a while by your parents?",
-    fact: "TBD",
+    fact: "You are totally a Carrie!",
   },
 
   ENTP: {
@@ -508,7 +508,7 @@ export const MBTI_TYPES = {
     image: "ENTP.png",
     pros: "You’re creative! You’re not meant for a desk job. Get out there and create!",
     cons: "You might have been more annoying than you hoped in Socratic Seminars in high school.",
-    fact: "TBD",
+    fact: "Niccolo Machiavelli was an ENTP too. I’m wondering: is it better to be feared or loved?",
   },
 
   ESTJ: {
@@ -518,7 +518,7 @@ export const MBTI_TYPES = {
     image: "ESTJ.png",
     pros: "You are sooooo organized.",
     cons: "You might be overly concerned with others’ opinions of you. Have you seen the shows “I Love LA” or “Entourage”?",
-    fact: "TBD",
+    fact: "You are more likely to be the Break-Up-er than the Break-Up-ee.",
   },
 
   ESFJ: {
@@ -528,7 +528,7 @@ export const MBTI_TYPES = {
     image: "ESFJ.png",
     pros: "You probably were permanently affected by Sally Rooney’s “Normal People”.",
     cons: "Apparently you’re too needy. LOL!",
-    fact: "TBD",
+    fact: "It’s uncommon for ESFJs to work in tech. You would maybe make a great teacher.",
   },
 
   ENFJ: {
@@ -538,7 +538,7 @@ export const MBTI_TYPES = {
     image: "ENFJ.png",
     pros: "You think you’re that girl and you are!",
     cons: "In spite of being that girl, humility goes a long way. Let’s find it!",
-    fact: "TBD",
+    fact: "Elizabeth Bennet is an ENFJ. Is it time to rewatch Pride and Prejudice?",
   },
 
   ENTJ: {
@@ -548,6 +548,6 @@ export const MBTI_TYPES = {
     image: "ENTJ.png",
     pros: "You probably loved Good Will Hunting.",
     cons: "It’s time to dig deep: Do you unconsciously promote the agenda of a patriarchal society?",
-    fact: "TBD",
+    fact: "Tony Soprano was an ENTJ. What do you think happened in the diner at the end of that show?",
   },
 };

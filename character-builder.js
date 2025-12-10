@@ -266,11 +266,9 @@ export class CharacterBuilder {
       this.character.getProperty("feature05Type");
     this.currentSelections.colorType = this.character.getProperty("colorType");
 
-    // Load saved name
+    // Load saved name or clear if empty
     const savedName = this.character.getProperty("name");
-    if (savedName) {
-      this.nameInput.value = savedName;
-    }
+    this.nameInput.value = savedName || "";
 
     this.updateCharacterPreview();
   }

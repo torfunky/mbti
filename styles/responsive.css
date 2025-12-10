@@ -1,16 +1,19 @@
 /** 
-RESONSIVE 
+RESPONSIVE 
 **/
 
-@media (max-width: 1040px) {
-  .quiz-body {
-    max-width: 90vw;
+/* Mobile container adjustments */
+@media (max-width: 480px) {
+  .container {
+    width: min(480px, 95vw);
+    height: min(600px, 95vh);
   }
 }
 
+/* Mobile quiz specific adjustments */
 @media (max-width: 480px) and (max-height: 750px) {
   .question-text {
-    max-width: 100% !important;
+    max-width: 100%;
     top: 60px;
   }
 
@@ -21,11 +24,12 @@ RESONSIVE
   }
 
   .answers-container {
-    max-width: 100% !important;
+    max-width: 100%;
     bottom: 30px;
   }
 }
 
+/* Mobile layout adjustments */
 @media (max-width: 480px) {
   .quiz-body {
     min-height: 0;
@@ -44,6 +48,7 @@ RESONSIVE
   .quiz-navigation {
     gap: 30px;
     margin-top: 30px;
+    bottom: 15px;
   }
 
   .question-text {
@@ -68,120 +73,9 @@ RESONSIVE
     max-width: 100%;
     min-width: 0;
   }
-
-  .quiz-navigation {
-    bottom: 15px;
-    gap: 30px;
-  }
 }
 
-@media (max-width: 480px) {
-  .container {
-    padding: 0 10px;
-  }
-
-  .screen {
-    padding: 30px 20px;
-  }
-
-  #start-screen h1 {
-    font-size: 2em;
-  }
-
-  #results-screen {
-    padding: 30px 20px;
-  }
-
-  .progress-circles {
-    gap: 8px;
-    margin-bottom: 12px;
-    flex-shrink: 0;
-  }
-
-  .progress-circle {
-    width: 16px;
-    height: 16px;
-    min-width: 16px;
-    min-height: 16px;
-    flex-shrink: 0;
-  }
-
-  .question-image {
-    margin-bottom: 0;
-  }
-
-  .personality-type h2 {
-    font-size: 2em;
-  }
-
-  .pie-charts-container {
-    grid-template-columns: 1fr 1fr;
-    gap: -10px 60px;
-    max-width: 100%;
-    margin: 0 auto;
-    justify-content: center;
-  }
-
-  /* At 480px, hide lines and position labels directly above/below */
-  .pie-lines {
-    display: none;
-  }
-
-  .pie-label.trait1 {
-    top: 20px !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-  }
-
-  .pie-label.trait2 {
-    top: 100px !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-  }
-
-  /* Special case: Keep 100% labels centered on the pie */
-  .pie-label[style*="left: 70px"][style*="top: 70px"] {
-    top: 50% !important;
-    left: 50% !important;
-    transform: translate(-50%, -50%) !important;
-  }
-
-  /* Smaller compatibility cards */
-  .compatibility-section {
-    gap: 15px;
-  }
-
-  .compatibility-item {
-    min-height: 110px;
-    min-width: 110px;
-    max-width: 110px;
-    padding: 10px 8px;
-    gap: 6px;
-    flex: 0 0 auto;
-  }
-
-  .compatibility-character {
-    width: 60px;
-    height: 60px;
-  }
-
-  .compatibility-item h3 {
-    font-size: 0.6rem;
-    margin-bottom: 3px;
-  }
-
-  .compatibility-item p {
-    font-size: 0.65rem;
-  }
-
-  .pie-chart-content {
-    font-size: 8px;
-  }
-  .personality-image img {
-    max-width: 70px;
-  }
-}
-
+/* Results screen mobile adjustments */
 @media (max-width: 480px) {
   .screen {
     padding: 20px 15px;
@@ -199,92 +93,41 @@ RESONSIVE
 
   .progress-circles {
     gap: 6px;
-  }
-}
-
-@media (max-width: 430px) {
-  body {
-    padding: 15px;
+    margin-bottom: 12px;
+    flex-shrink: 0;
   }
 
-  .container {
-    width: calc(100% - 30px);
-    height: calc(100vh - 30px);
-    max-width: calc(100% - 30px);
-    max-height: calc(100vh - 30px);
-    margin: 0;
-    border-radius: 10px;
-  }
-}
-
-@media (max-height: 880px) {
-  body {
-    padding: 15px;
+  .progress-circle {
+    width: 16px;
+    height: 16px;
+    min-width: 16px;
+    min-height: 16px;
+    flex-shrink: 0;
   }
 
-  .container {
-    height: calc(100vh - 30px);
-    max-height: calc(100vh - 30px);
-    margin: 0;
-  }
-}
-
-@media (max-height: 850px) {
-  body {
-    padding: 10px;
+  #start-screen h1 {
+    font-size: 2em;
   }
 
-  .results-section {
-    padding: 20px 40px;
+  #results-screen {
+    padding: 30px 20px;
+  }
+
+  .personality-type h2 {
+    font-size: 2em;
   }
 
   .compatibility-section {
-    margin-bottom: 10px;
-    margin-top: -15px;
-  }
-
-  .pie-charts-container {
-    margin-bottom: 10px;
-    gap: -20px 200px;
-  }
-
-  .pie-chart-item {
-    min-height: 130px;
-  }
-
-  .personality-scores h4 {
-    margin-bottom: 8px;
-  }
-
-  .personality-scores {
-    margin-bottom: 15px;
-  }
-
-  #restart-btn {
-    margin-top: 10px;
-  }
-}
-
-@media (max-height: 800px) {
-  .user-character-display {
-    width: 100px;
-    height: 120px;
+    gap: 15px;
   }
 
   .compatibility-item {
-    min-height: 90px;
-    padding: 8px 6px;
-  }
-
-  .compatibility-character {
-    width: 50px;
-    height: 60px;
-  }
-
-  .question-text .mini-character {
-    width: 50px;
-    height: 60px;
-    height: 45px;
+    min-height: 110px;
+    min-width: 110px;
+    max-width: 110px;
+    padding: 10px 8px;
+    gap: 6px;
+    flex: 0 0 auto;
   }
 
   .compatibility-item h3 {
@@ -293,73 +136,6 @@ RESONSIVE
   }
 
   .compatibility-item p {
-    font-size: 0.7rem;
-  }
-
-  #restart-btn {
-    padding: 6px 12px;
-    font-size: 0.8rem;
-    margin-top: 15px;
-  }
-}
-
-@media (max-height: 720px) {
-  .user-character-display {
-    width: 80px;
-    height: 96px;
-  }
-
-  .compatibility-character {
-    width: 40px;
-    height: 48px;
-  }
-
-  .question-text .mini-character {
-    width: 40px;
-    height: 48px;
-  }
-
-  .personality-type h2 {
-    font-size: 1.4em !important;
-    margin-bottom: 5px !important;
-  }
-
-  #restart-btn {
-    padding: 2px 8px !important;
-    font-size: 0.7rem !important;
-    margin-top: 5px !important;
-  }
-}
-@media (max-height: 750px) {
-  .question-text {
-    max-width: 500px;
-    top: 100px;
-  }
-
-  .question-text h2 {
-    min-height: 190px;
-    max-height: 190px;
-  }
-
-  .answers-container {
-    max-width: 500px;
-    bottom: 60px;
-  }
-}
-
-@media (max-height: 650px) {
-  .question-text {
-    max-width: 600px;
-    top: 80px;
-  }
-
-  .question-text h2 {
-    min-height: 150px;
-    max-height: 150px;
-  }
-
-  .answers-container {
-    max-width: 600px;
-    bottom: 40px;
+    font-size: 0.65rem;
   }
 }
