@@ -102,7 +102,7 @@ export const QUIZ_QUESTIONS = [
         scores: { T: 1, S: 1 },
       },
       {
-        text: "I'm too emotional and angry to handle my emotions properly",
+        text: "I'm too emotional and angry to handle my emotions",
         scores: { F: 1 },
       },
       {
@@ -240,7 +240,7 @@ export const QUIZ_QUESTIONS = [
         scores: { E: 1 },
       },
       {
-        text: "Sticking with familiar faces but having deep chats",
+        text: "Sticking with familiar faces but having meaningful chats",
         scores: { I: 1 },
       },
       {
@@ -313,7 +313,7 @@ export const QUIZ_QUESTIONS = [
         scores: { P: 1 },
       },
       {
-        text: "I want everyone to be comfortable and that the team works harmoniously",
+        text: "I want everyone to be comfortable and to make sure the team works harmoniously",
         scores: { F: 1 },
       },
       {
@@ -437,7 +437,7 @@ export const MBTI_TYPES = {
     incompatible: "ENFJ, 9%",
     image: "ISTP.png",
     pros: "You could probably make an awesome table if you wanted to. And tell everyone you know.",
-    cons: "I bet your Spotify Wrapped top artists were all men. I know Addison Rae is a woman, but you should try out her album.",
+    cons: "Was your Spotify Wrapped Top Artists all men?",
     fact: "Indiana Jones is an ISTP! Is it time for a career switch to archaeology?",
   },
 
@@ -522,7 +522,7 @@ export const MBTI_TYPES = {
   },
 
   ESFJ: {
-    label: "Timothee Chalamet’s Portrayal of Willy Wonka (2023)",
+    label: "T Chalamet’s Portrayal of Willy Wonka (2023)",
     compatible: "ENFP, 93%",
     incompatible: "ISTP, 19%",
     image: "ESFJ.png",

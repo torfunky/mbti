@@ -175,11 +175,11 @@ h2 {
   font-size: clamp(1rem, 2.2vw, 2rem);
   line-height: 1.2;
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
   max-width: 100%;
   text-align: center;
-  font-size: min(2rem, 18vw);
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 10px;
 }
 h3 {
   font-size: var(--font-sm);
@@ -842,7 +842,7 @@ RESULTS SCREEN
   line-height: 1.5;
   color: var(--key-color);
   text-transform: none;
-  font-size: var(--font-base);
+  font-size: 1rem;
 }
 
 .pie-label {

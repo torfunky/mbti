@@ -140,6 +140,7 @@ class MBTIQuiz {
         width: 700px;
         height: 1100px;
         background: var(--main-theme-1);
+        border-radius: 40px;
         box-sizing: border-box;
         font-family: inherit;
         overflow: hidden;
@@ -167,22 +168,46 @@ class MBTIQuiz {
       `;
 
       // Create separate containers for personality code and character
-      const personalityCodeElement = document.querySelector("#personality-code");
-      const characterDisplayElement = document.querySelector("#user-character-display");
-      
+      const personalityCodeElement =
+        document.querySelector("#personality-code");
+      const characterDisplayElement = document.querySelector(
+        "#user-character-display"
+      );
+
       // Clone personality code
       const clonedPersonalityCode = personalityCodeElement.cloneNode(true);
+      // Create MBTI type display (separate from personality code)
+      const mbtiTypeDisplay = document.createElement("div");
+      mbtiTypeDisplay.textContent = this.getPersonalityType() + ":";
+      mbtiTypeDisplay.style.cssText = `
+        position: absolute;
+        top: 140px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: var(--main-theme-3);
+        background: var(--main-theme-2);
+        padding: 2px 2px;
+        white-space: nowrap;
+        font-family: var(--font-pally);
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        text-align: center;
+        z-index: 3;
+      `;
+
       const personalityCodeContainer = document.createElement("div");
       personalityCodeContainer.style.cssText = `
         position: absolute;
-        top: 160px;
+        top: 175px;
         left: 50%;
-        transform: translateX(-50% );
+        transform: translateX(-50%);
         text-align: center;
         z-index: 3;
       `;
       personalityCodeContainer.appendChild(clonedPersonalityCode);
-      
+
       // Clone character display
       const clonedCharacterDisplay = characterDisplayElement.cloneNode(true);
       const characterContainer = document.createElement("div");
@@ -193,9 +218,10 @@ class MBTIQuiz {
         transform: translateX(-50%) scale(1.1);
         z-index: 2;
       `;
-      
+
       // Fix character layer aspect ratio for export
-      const characterLayers = clonedCharacterDisplay.querySelectorAll(".character-layer");
+      const characterLayers =
+        clonedCharacterDisplay.querySelectorAll(".character-layer");
       characterLayers.forEach((layer) => {
         layer.style.cssText += `
           width: 170px !important;
@@ -205,17 +231,19 @@ class MBTIQuiz {
         `;
       });
       characterContainer.appendChild(clonedCharacterDisplay);
-      
+
       // Clone the rest of the results content (scores, description, compatibility)
       const resultsContent = document.querySelector(".result-content");
       const clonedContent = resultsContent.cloneNode(true);
-      
+
       // Remove personality code and character display from cloned content since we're handling them separately
-      const personalityTypeSection = clonedContent.querySelector(".personality-type");
-      const personalityImageSection = clonedContent.querySelector(".personality-image");
+      const personalityTypeSection =
+        clonedContent.querySelector(".personality-type");
+      const personalityImageSection =
+        clonedContent.querySelector(".personality-image");
       if (personalityTypeSection) personalityTypeSection.remove();
       if (personalityImageSection) personalityImageSection.remove();
-      
+
       clonedContent.style.cssText = `
         position: absolute;
         top: 480px;
@@ -240,10 +268,9 @@ class MBTIQuiz {
         left: 0;
         width: 100%;
         text-align: center;
-        font-size: 0.75rem;
+        font-size: 0.8rem;
         color: var(--main-theme-3);
         font-family: var(--font-pally);
-        opacity: 0.8;
         padding: 0 30px;
         box-sizing: border-box;
         line-height: 1.2;
@@ -265,6 +292,7 @@ class MBTIQuiz {
       `;
 
       contentBox.appendChild(header);
+      contentBox.appendChild(mbtiTypeDisplay);
       contentBox.appendChild(personalityCodeContainer);
       contentBox.appendChild(characterContainer);
       contentBox.appendChild(clonedContent);
@@ -277,7 +305,7 @@ class MBTIQuiz {
         width: 700,
         height: 1100,
         scale: 1,
-        backgroundColor: null,
+        backgroundColor: "white",
         useCORS: true,
         allowTaint: true,
         foreignObjectRendering: false,
@@ -289,7 +317,8 @@ class MBTIQuiz {
       document.body.removeChild(container);
 
       // Convert to blob and download
-      canvas.toBlob((blob) => {
+      canvas.toBlob(async (blob) => {
+        // Download for user
         const url = URL.createObjectURL(blob);
         const a = document.createElement("a");
         a.href = url;
@@ -298,6 +327,25 @@ class MBTIQuiz {
         a.click();
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
+
+        // Save to project folder and run python script
+        try {
+          const formData = new FormData();
+          formData.append("image", blob, "image.png");
+
+          const response = await fetch("/save-and-print", {
+            method: "POST",
+            body: formData,
+          });
+
+          if (response.ok) {
+            console.log("Image saved and python script executed successfully");
+          } else {
+            console.error("Failed to save image and run python script");
+          }
+        } catch (error) {
+          console.error("Error saving image to project folder:", error);
+        }
       }, "image/png");
     } catch (error) {
       console.error("Error generating image:", error);
