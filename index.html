@@ -13,6 +13,7 @@
       nomodule
       src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
     ></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
     <link rel="stylesheet" href="styles/styles.css" />
     <link rel="stylesheet" href="styles/responsive.css" />
@@ -53,10 +54,10 @@
 
           <div class="character-builder-interface">
             <div class="arrow-controls left">
-              <button class="feature-arrow prev" data-feature="bodyType">
+              <button class="feature-arrow prev" data-feature="feature01Type">
                 ‹
               </button>
-              <button class="feature-arrow prev" data-feature="feature01Type">
+              <button class="feature-arrow prev" data-feature="bodyType">
                 ‹
               </button>
               <button class="feature-arrow prev" data-feature="feature02Type">
@@ -78,10 +79,10 @@
             </div>
 
             <div class="arrow-controls right">
-              <button class="feature-arrow next" data-feature="bodyType">
+              <button class="feature-arrow next" data-feature="feature01Type">
                 ›
               </button>
-              <button class="feature-arrow next" data-feature="feature01Type">
+              <button class="feature-arrow next" data-feature="bodyType">
                 ›
               </button>
               <button class="feature-arrow next" data-feature="feature02Type">
@@ -186,10 +187,25 @@
           <button id="share-btn" class="btn-share btn-small">
             Print Result
           </button>
+          <button id="see-all-types-btn" class="btn-restart btn-small">
+            See All Types
+          </button>
           <button id="restart-btn" class="btn-restart btn-small">
             Take Quiz Again
           </button>
         </div>
+      </div>
+
+      <div id="all-types-screen" class="screen">
+        <div class="all-types-header">
+          <button id="back-to-results-btn" class="all-types-btn-back">
+            Back
+          </button>
+          <button id="restart-from-all-types-btn" class="all-types-btn-restart">
+            Restart Quiz
+          </button>
+        </div>
+        <div id="all-types-container" class="all-types-grid"></div>
       </div>
     </div>
 

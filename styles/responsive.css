@@ -210,15 +210,38 @@ RESPONSIVE
     top: 80px;
   }
 
-  .compatibility-section {
-    height: 60px;
-  }
-
   .compatibility-item h3 {
     font-size: 0.6rem;
   }
 
   .compatibility-item p {
     font-size: 0.6rem;
+  }
+}
+
+/* All Types Screen Responsive */
+@media (max-width: 480px) {
+  .all-types-header {
+    margin-bottom: 15px;
+  }
+
+  .all-types-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    max-height: 500px;
+  }
+
+  .type-card {
+    padding: 5px;
+  }
+
+  .type-card img {
+    width: 70px;
+    height: 84px;
+  }
+
+  .type-card p {
+    font-size: 0.65rem;
+    padding: 1px 3px;
   }
 }

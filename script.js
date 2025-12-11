@@ -21,6 +21,7 @@ class MBTIQuiz {
     this.initializeElements();
     this.initializeCharacterBuilder();
     this.setupEventListeners();
+    this.clearNameAndResetCharacter();
     this.showStartScreen();
   }
 
@@ -31,6 +32,7 @@ class MBTIQuiz {
     );
     this.quizScreen = document.getElementById("quiz-screen");
     this.resultsScreen = document.getElementById("results-screen");
+    this.allTypesScreen = document.getElementById("all-types-screen");
     this.questionCounter = document.getElementById("question-counter");
     this.progressCircles = document.getElementById("progress-circles");
     this.questionImg = document.getElementById("question-img");
@@ -42,6 +44,13 @@ class MBTIQuiz {
     this.scoresList = document.getElementById("scores-list");
     this.startBtn = document.getElementById("start-btn");
     this.restartBtn = document.getElementById("restart-btn");
+    this.seeAllTypesBtn = document.getElementById("see-all-types-btn");
+    this.backToResultsBtn = document.getElementById("back-to-results-btn");
+    this.restartFromAllTypesBtn = document.getElementById(
+      "restart-from-all-types-btn"
+    );
+    this.shareBtn = document.getElementById("share-btn");
+    this.allTypesContainer = document.getElementById("all-types-container");
   }
 
   initializeCharacterBuilder() {
@@ -63,6 +72,12 @@ class MBTIQuiz {
     this.prevBtn.addEventListener("click", () => this.previousQuestion());
     this.nextBtn.addEventListener("click", () => this.nextQuestion());
     this.restartBtn.addEventListener("click", () => this.restartQuiz());
+    this.seeAllTypesBtn.addEventListener("click", () => this.showAllTypes());
+    this.backToResultsBtn.addEventListener("click", () => this.showResults());
+    this.restartFromAllTypesBtn.addEventListener("click", () =>
+      this.restartQuiz()
+    );
+    this.shareBtn.addEventListener("click", () => this.printResult());
 
     // Color picker event listeners
     const colorOptions = document.querySelectorAll(".color-option");
@@ -96,6 +111,151 @@ class MBTIQuiz {
     });
   }
 
+  clearNameAndResetCharacter() {
+    // Clear name input on page load/refresh
+    const nameInput = document.getElementById("character-name-input");
+    if (nameInput) {
+      nameInput.value = "";
+    }
+
+    // Reset character to random state
+    if (this.characterBuilder && this.characterBuilder.getCharacter()) {
+      this.characterBuilder.getCharacter().reset();
+      this.characterBuilder.refreshDisplay();
+    }
+  }
+
+  async printResult() {
+    try {
+      // Get the name from character builder or use default
+      const name =
+        this.characterBuilder?.getCharacter()?.getProperty("name") || "Friend";
+
+      // Create a temporary container for the image
+      const container = document.createElement("div");
+      container.style.cssText = `
+        position: fixed;
+        top: -9999px;
+        left: -9999px;
+        width: 700px;
+        height: 1100px;
+        background: var(--main-theme-1);
+        box-sizing: border-box;
+        font-family: inherit;
+        overflow: hidden;
+      `;
+
+      // Create header
+      const header = document.createElement("h2");
+      header.textContent = `Hello ${name}, you are...`;
+      header.style.cssText = `
+        font-size: 3.2rem;
+        font-weight: 700;
+        color: var(--main-theme-3);
+        text-align: center;
+        margin: 0;
+        font-family: var(--font-pally);
+        text-transform: none !important;
+        letter-spacing: 0.05em;
+        line-height: 1.1;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        padding: 0 40px;
+        box-sizing: border-box;
+      `;
+
+      // Clone the results content
+      const resultsContent = document.querySelector(".result-content");
+      const clonedContent = resultsContent.cloneNode(true);
+      clonedContent.style.cssText = `
+        position: absolute;
+        top: 55%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(1.3);
+        transform-origin: center center;
+        margin: 0;
+        padding: 0 40px;
+        width: calc(100% - 80px);
+        box-sizing: border-box;
+        max-width: none;
+        max-height: none;
+      `;
+
+      // Create footer
+      const footer = document.createElement("footer");
+      footer.textContent =
+        "quiz and dev by reiley nymeyer • design by phoebe zheng • results copy by haysie chung";
+      footer.style.cssText = `
+        position: absolute;
+        bottom: 20px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+        font-size: 0.7rem;
+        color: var(--main-theme-3);
+        font-family: var(--font-pally);
+        opacity: 0.8;
+        padding: 0 40px;
+        box-sizing: border-box;
+        line-height: 1.2;
+      `;
+
+      // Create inner content box
+      const contentBox = document.createElement("div");
+      contentBox.style.cssText = `
+        position: absolute;
+        top: 30px;
+        left: 30px;
+        width: calc(100% - 60px);
+        height: calc(100% - 60px);
+        background: var(--main-theme-2);
+        border: 4px solid var(--main-theme-3);
+        border-radius: 20px;
+        box-sizing: border-box;
+        overflow: hidden;
+      `;
+
+      contentBox.appendChild(header);
+      contentBox.appendChild(clonedContent);
+      contentBox.appendChild(footer);
+      container.appendChild(contentBox);
+      document.body.appendChild(container);
+
+      // Generate the image
+      const canvas = await html2canvas(container, {
+        width: 700,
+        height: 1100,
+        scale: 1,
+        backgroundColor: null,
+        useCORS: true,
+        allowTaint: true,
+        foreignObjectRendering: false,
+        imageTimeout: 0,
+        logging: false,
+      });
+
+      // Remove temporary container
+      document.body.removeChild(container);
+
+      // Convert to blob and download
+      canvas.toBlob((blob) => {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = "image.png";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      }, "image/png");
+    } catch (error) {
+      console.error("Error generating image:", error);
+      alert("Error generating image. Please try again.");
+    }
+  }
+
   showStartScreen() {
     this.hideAllScreens();
     this.startScreen.classList.add("active");
@@ -110,6 +270,12 @@ class MBTIQuiz {
   showQuizScreen() {
     this.hideAllScreens();
     this.quizScreen.classList.add("active");
+  }
+
+  showAllTypes() {
+    this.hideAllScreens();
+    this.allTypesScreen.classList.add("active");
+    this.displayAllTypes();
   }
 
   addCharacterToQuestionBox() {
@@ -589,12 +755,39 @@ class MBTIQuiz {
     // Reset and randomize character
     if (this.characterBuilder && this.characterBuilder.getCharacter()) {
       this.characterBuilder.getCharacter().reset();
+      // Clear the name input
+      const nameInput = document.getElementById("character-name-input");
+      if (nameInput) {
+        nameInput.value = "";
+      }
       // Force refresh of character builder display
       this.characterBuilder.refreshDisplay();
     }
 
     this.userCharacter = null;
     this.showStartScreen();
+  }
+
+  displayAllTypes() {
+    this.allTypesContainer.innerHTML = "";
+
+    Object.entries(MBTI_TYPES).forEach(([type, data]) => {
+      const typeCard = document.createElement("div");
+      typeCard.className = "type-card";
+
+      typeCard.innerHTML = `
+        <img src="assets/mbti-types/${data.image}" alt="${type}" />
+        <p>${data.label}</p>
+      `;
+
+      // Add click handler to show individual type details (optional)
+      typeCard.addEventListener("click", () => {
+        // You can add individual type detail functionality here if needed
+        console.log(`Clicked on ${type}`);
+      });
+
+      this.allTypesContainer.appendChild(typeCard);
+    });
   }
 }
 
