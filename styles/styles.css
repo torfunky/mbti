@@ -172,12 +172,14 @@ h2 {
 }
 
 #personality-code {
-  font-size: clamp(1.3rem, 2.2vw, 2rem);
+  font-size: clamp(1rem, 2.2vw, 2rem);
   line-height: 1.2;
-  word-wrap: break-word;
-  hyphens: auto;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   max-width: 100%;
   text-align: center;
+  font-size: min(2rem, 18vw);
 }
 h3 {
   font-size: var(--font-sm);

@@ -166,26 +166,36 @@ class MBTIQuiz {
         box-sizing: border-box;
       `;
 
-      // Clone the results content
-      const resultsContent = document.querySelector(".result-content");
-      const clonedContent = resultsContent.cloneNode(true);
-      clonedContent.style.cssText = `
+      // Create separate containers for personality code and character
+      const personalityCodeElement = document.querySelector("#personality-code");
+      const characterDisplayElement = document.querySelector("#user-character-display");
+      
+      // Clone personality code
+      const clonedPersonalityCode = personalityCodeElement.cloneNode(true);
+      const personalityCodeContainer = document.createElement("div");
+      personalityCodeContainer.style.cssText = `
         position: absolute;
-        top: 55%;
+        top: 160px;
         left: 50%;
-        transform: translate(-50%, -50%) scale(1.05);
-        transform-origin: center center;
-        margin: 0;
-        padding: 0 30px;
-        width: calc(100% - 60px);
-        box-sizing: border-box;
-        max-width: none;
-        max-height: none;
+        transform: translateX(-50% );
+        text-align: center;
+        z-index: 3;
       `;
-
+      personalityCodeContainer.appendChild(clonedPersonalityCode);
+      
+      // Clone character display
+      const clonedCharacterDisplay = characterDisplayElement.cloneNode(true);
+      const characterContainer = document.createElement("div");
+      characterContainer.style.cssText = `
+        position: absolute;
+        top: 240px;
+        left: 50%;
+        transform: translateX(-50%) scale(1.1);
+        z-index: 2;
+      `;
+      
       // Fix character layer aspect ratio for export
-      const characterLayers =
-        clonedContent.querySelectorAll(".character-layer");
+      const characterLayers = clonedCharacterDisplay.querySelectorAll(".character-layer");
       characterLayers.forEach((layer) => {
         layer.style.cssText += `
           width: 170px !important;
@@ -194,6 +204,31 @@ class MBTIQuiz {
           object-position: center !important;
         `;
       });
+      characterContainer.appendChild(clonedCharacterDisplay);
+      
+      // Clone the rest of the results content (scores, description, compatibility)
+      const resultsContent = document.querySelector(".result-content");
+      const clonedContent = resultsContent.cloneNode(true);
+      
+      // Remove personality code and character display from cloned content since we're handling them separately
+      const personalityTypeSection = clonedContent.querySelector(".personality-type");
+      const personalityImageSection = clonedContent.querySelector(".personality-image");
+      if (personalityTypeSection) personalityTypeSection.remove();
+      if (personalityImageSection) personalityImageSection.remove();
+      
+      clonedContent.style.cssText = `
+        position: absolute;
+        top: 480px;
+        left: 50%;
+        transform: translateX(-50%) scale(1.2);
+        margin: 0;
+        padding: 0 30px;
+        width: calc(100% - 60px);
+        box-sizing: border-box;
+        max-width: none;
+        max-height: none;
+        z-index: 1;
+      `;
 
       // Create footer
       const footer = document.createElement("footer");
@@ -205,7 +240,7 @@ class MBTIQuiz {
         left: 0;
         width: 100%;
         text-align: center;
-        font-size: 0.65rem;
+        font-size: 0.75rem;
         color: var(--main-theme-3);
         font-family: var(--font-pally);
         opacity: 0.8;
@@ -230,6 +265,8 @@ class MBTIQuiz {
       `;
 
       contentBox.appendChild(header);
+      contentBox.appendChild(personalityCodeContainer);
+      contentBox.appendChild(characterContainer);
       contentBox.appendChild(clonedContent);
       contentBox.appendChild(footer);
       container.appendChild(contentBox);
