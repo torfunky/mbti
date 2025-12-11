@@ -448,7 +448,7 @@ export const MBTI_TYPES = {
     image: "ISFP.png",
     pros: "You are an extremely charming individual. Your kindness and sensitivity probably mean more to others than you realize!",
     cons: "I’m trusting you know who Virginia Woolf is. If not, pick up a book. Also, you might have low self esteem. Hard to hear. Sorry.",
-    fact: "Prince was an ISFP. #goated.",
+    fact: "Prince was an ISFP #goated.",
   },
 
   INFP: {
@@ -486,7 +486,7 @@ export const MBTI_TYPES = {
     compatible: "ENFP, 93%",
     incompatible: "INTJ, 22%",
     image: "ESFP.png",
-    pros: "’m having a hard time finding a pro!",
+    pros: "I’m having a hard time finding a pro!",
     cons: "Do you find that other cars try to avoid being close to yours on the freeway?",
     fact: "You share an MBTI type with Peregrin Took. It’s good to share characteristics with that wee Hobbit.",
   },

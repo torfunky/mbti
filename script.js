@@ -781,7 +781,7 @@ class MBTIQuiz {
       descriptionContainer.innerHTML = `
         <p><strong>PRO:</strong> ${typeData?.pros || "Not available"}</p>
         <p><strong>CON:</strong> ${typeData?.cons || "Not available"}</p>
-        <p> ${typeData?.fact || "Not available"}</p>
+        <p><strong>➼ </strong> ${typeData?.fact || "Not available"}</p>
       `;
     }
   }

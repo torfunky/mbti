@@ -67,7 +67,10 @@ h3 {
   margin-bottom: var(--space-2);
 }
 h4,
-h5,
+h5 {
+  /* color: red; */
+  text-transform: lowercase !important;
+}
 h6 {
   font-family: var(--font-mono);
   font-weight: var(--font-semibold);
@@ -132,6 +135,11 @@ h6 {
   color: var(--key-color);
   font-weight: var(--font-normal);
   letter-spacing: 0.01em;
+}
+
+#start-screen .subtitle {
+text-transform: none;
+color: red;
 }
 
 #start-screen .btn {
