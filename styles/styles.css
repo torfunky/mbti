@@ -665,6 +665,7 @@ RESULTS SCREEN
   justify-content: center;
   overflow: visible;
   margin: 0 auto;
+  /* background-color: red; */
 }
 
 .user-character-display .character-layer {
@@ -676,6 +677,7 @@ RESULTS SCREEN
   /* height: 216px; */
   object-fit: contain;
   object-position: center;
+  /* background-color: blue; */
 }
 
 .personality-scores {
@@ -753,7 +755,7 @@ RESULTS SCREEN
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
-  margin-bottom: var(--space-6);
+  margin-bottom: 3rem;
 }
 
 .progress-bar-item {

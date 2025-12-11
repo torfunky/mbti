@@ -129,7 +129,7 @@ class MBTIQuiz {
     try {
       // Get the name from character builder or use default
       const name =
-        this.characterBuilder?.getCharacter()?.getProperty("name") || "Friend";
+        this.characterBuilder?.getCharacter()?.getProperty("name") || "friend";
 
       // Create a temporary container for the image
       const container = document.createElement("div");
@@ -149,7 +149,7 @@ class MBTIQuiz {
       const header = document.createElement("h2");
       header.textContent = `Hello ${name}, you are...`;
       header.style.cssText = `
-        font-size: 3.2rem;
+        font-size: 2.6rem;
         font-weight: 700;
         color: var(--main-theme-3);
         text-align: center;
@@ -159,10 +159,10 @@ class MBTIQuiz {
         letter-spacing: 0.05em;
         line-height: 1.1;
         position: absolute;
-        top: 60px;
+        top: 50px;
         left: 0;
         width: 100%;
-        padding: 0 40px;
+        padding: 0 30px;
         box-sizing: border-box;
       `;
 
@@ -173,15 +173,27 @@ class MBTIQuiz {
         position: absolute;
         top: 55%;
         left: 50%;
-        transform: translate(-50%, -50%) scale(1.3);
+        transform: translate(-50%, -50%) scale(1.05);
         transform-origin: center center;
         margin: 0;
-        padding: 0 40px;
-        width: calc(100% - 80px);
+        padding: 0 30px;
+        width: calc(100% - 60px);
         box-sizing: border-box;
         max-width: none;
         max-height: none;
       `;
+
+      // Fix character layer aspect ratio for export
+      const characterLayers =
+        clonedContent.querySelectorAll(".character-layer");
+      characterLayers.forEach((layer) => {
+        layer.style.cssText += `
+          width: 170px !important;
+          height: auto !important;
+          object-fit: contain !important;
+          object-position: center !important;
+        `;
+      });
 
       // Create footer
       const footer = document.createElement("footer");
@@ -189,15 +201,15 @@ class MBTIQuiz {
         "quiz and dev by reiley nymeyer • design by phoebe zheng • results copy by haysie chung";
       footer.style.cssText = `
         position: absolute;
-        bottom: 20px;
+        bottom: 15px;
         left: 0;
         width: 100%;
         text-align: center;
-        font-size: 0.7rem;
+        font-size: 0.65rem;
         color: var(--main-theme-3);
         font-family: var(--font-pally);
         opacity: 0.8;
-        padding: 0 40px;
+        padding: 0 30px;
         box-sizing: border-box;
         line-height: 1.2;
       `;
@@ -206,10 +218,10 @@ class MBTIQuiz {
       const contentBox = document.createElement("div");
       contentBox.style.cssText = `
         position: absolute;
-        top: 30px;
-        left: 30px;
-        width: calc(100% - 60px);
-        height: calc(100% - 60px);
+        top: 50px;
+        left: 50px;
+        width: calc(100% - 100px);
+        height: calc(100% - 100px);
         background: var(--main-theme-2);
         border: 4px solid var(--main-theme-3);
         border-radius: 20px;
