@@ -28,7 +28,7 @@ class MBTIQuiz {
   initializeElements() {
     this.startScreen = document.getElementById("start-screen");
     this.characterBuilderScreen = document.getElementById(
-      "character-builder-screen"
+      "character-builder-screen",
     );
     this.quizScreen = document.getElementById("quiz-screen");
     this.resultsScreen = document.getElementById("results-screen");
@@ -47,7 +47,7 @@ class MBTIQuiz {
     this.seeAllTypesBtn = document.getElementById("see-all-types-btn");
     this.backToResultsBtn = document.getElementById("back-to-results-btn");
     this.restartFromAllTypesBtn = document.getElementById(
-      "restart-from-all-types-btn"
+      "restart-from-all-types-btn",
     );
     this.shareBtn = document.getElementById("share-btn");
     this.allTypesContainer = document.getElementById("all-types-container");
@@ -75,7 +75,7 @@ class MBTIQuiz {
     this.seeAllTypesBtn.addEventListener("click", () => this.showAllTypes());
     this.backToResultsBtn.addEventListener("click", () => this.showResults());
     this.restartFromAllTypesBtn.addEventListener("click", () =>
-      this.restartQuiz()
+      this.restartQuiz(),
     );
     this.shareBtn.addEventListener("click", () => this.printResult());
 
@@ -171,7 +171,7 @@ class MBTIQuiz {
       const personalityCodeElement =
         document.querySelector("#personality-code");
       const characterDisplayElement = document.querySelector(
-        "#user-character-display"
+        "#user-character-display",
       );
 
       // Clone personality code
@@ -382,7 +382,7 @@ class MBTIQuiz {
 
     // Remove existing mini character if any
     const existingChar = document.querySelector(
-      ".question-text .mini-character"
+      ".question-text .mini-character",
     );
     if (existingChar) {
       existingChar.remove();
@@ -444,6 +444,8 @@ class MBTIQuiz {
   showResultsScreen() {
     this.hideAllScreens();
     this.resultsScreen.classList.add("active");
+    // Ensure results screen starts at the top
+    this.resultsScreen.scrollTop = 0;
   }
 
   hideAllScreens() {
@@ -498,7 +500,7 @@ class MBTIQuiz {
     // Find the button that matches the selected answerIndex in the shuffled order
     const answersWithIndex = this.shuffledAnswers[this.currentQuestionIndex];
     const btnIdx = answersWithIndex.findIndex(
-      (a) => a.origIndex === answerIndex
+      (a) => a.origIndex === answerIndex,
     );
     if (btnIdx !== -1) {
       document
@@ -578,7 +580,7 @@ class MBTIQuiz {
       answerBtn.className = "answer-btn";
       answerBtn.textContent = answer.text;
       answerBtn.addEventListener("click", () =>
-        this.selectAnswer(answer.origIndex)
+        this.selectAnswer(answer.origIndex),
       );
 
       // Check if this answer was previously selected
@@ -708,7 +710,7 @@ class MBTIQuiz {
 
       CharacterUtils.renderCharacterInContainer(
         "user-character-display",
-        userCharacterData
+        userCharacterData,
       );
     }
 
@@ -821,7 +823,7 @@ class MBTIQuiz {
   displayMBTIDescription() {
     const personalityType = this.getPersonalityType();
     const descriptionContainer = document.getElementById(
-      "mbti-description-text"
+      "mbti-description-text",
     );
 
     if (descriptionContainer) {

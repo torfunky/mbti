@@ -914,9 +914,14 @@ RESULTS SCREEN
   #results-screen.active {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    padding: 20px 15px;
+    justify-content: flex-start;
+    padding: 20px 15px 20px 15px;
     overflow-y: auto;
+  }
+
+  .personality-type {
+    margin-top: 10px;
+    margin-bottom: 25px;
   }
 }
 
@@ -1283,8 +1288,6 @@ RESULTS SCREEN
   /* top: -150px; */
 }
 
-
-
 /* All Types Screen */
 #all-types-screen.active {
   padding: 20px;
@@ -1400,5 +1403,3 @@ RESULTS SCREEN
   box-sizing: border-box;
   /* top: -50px; */
 }
-
-
