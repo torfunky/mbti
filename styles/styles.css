@@ -5,7 +5,8 @@ CSS
 /* Font Definitions */
 @font-face {
   font-family: "Excon";
-  src: url("../assets/fonts/Excon_Complete/Fonts/WEB/fonts/Excon-Regular.woff2")
+  src:
+    url("../assets/fonts/Excon_Complete/Fonts/WEB/fonts/Excon-Regular.woff2")
       format("woff2"),
     url("../assets/fonts/Excon_Complete/Fonts/WEB/fonts/Excon-Regular.woff")
       format("woff");
@@ -15,7 +16,8 @@ CSS
 
 @font-face {
   font-family: "Excon";
-  src: url("../assets/fonts/Excon_Complete/Fonts/WEB/fonts/Excon-Medium.woff2")
+  src:
+    url("../assets/fonts/Excon_Complete/Fonts/WEB/fonts/Excon-Medium.woff2")
       format("woff2"),
     url("../assets/fonts/Excon_Complete/Fonts/WEB/fonts/Excon-Medium.woff")
       format("woff");
@@ -25,7 +27,8 @@ CSS
 
 @font-face {
   font-family: "Excon";
-  src: url("../assets/fonts/Excon_Complete/Fonts/WEB/fonts/Excon-Bold.woff2")
+  src:
+    url("../assets/fonts/Excon_Complete/Fonts/WEB/fonts/Excon-Bold.woff2")
       format("woff2"),
     url("../assets/fonts/Excon_Complete/Fonts/WEB/fonts/Excon-Bold.woff")
       format("woff");
@@ -35,7 +38,8 @@ CSS
 
 @font-face {
   font-family: "Pally";
-  src: url("../assets/fonts/Pally_Complete/Fonts/WEB/fonts/Pally-Regular.woff2")
+  src:
+    url("../assets/fonts/Pally_Complete/Fonts/WEB/fonts/Pally-Regular.woff2")
       format("woff2"),
     url("../assets/fonts/Pally_Complete/Fonts/WEB/fonts/Pally-Regular.woff")
       format("woff");
@@ -45,7 +49,8 @@ CSS
 
 @font-face {
   font-family: "Pally";
-  src: url("../assets/fonts/Pally_Complete/Fonts/WEB/fonts/Pally-Medium.woff2")
+  src:
+    url("../assets/fonts/Pally_Complete/Fonts/WEB/fonts/Pally-Medium.woff2")
       format("woff2"),
     url("../assets/fonts/Pally_Complete/Fonts/WEB/fonts/Pally-Medium.woff")
       format("woff");
@@ -55,7 +60,8 @@ CSS
 
 @font-face {
   font-family: "Pally";
-  src: url("../assets/fonts/Pally_Complete/Fonts/WEB/fonts/Pally-Bold.woff2")
+  src:
+    url("../assets/fonts/Pally_Complete/Fonts/WEB/fonts/Pally-Bold.woff2")
       format("woff2"),
     url("../assets/fonts/Pally_Complete/Fonts/WEB/fonts/Pally-Bold.woff")
       format("woff");
@@ -65,7 +71,8 @@ CSS
 
 @font-face {
   font-family: "Satoshi";
-  src: url("../assets/fonts/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Regular.woff2")
+  src:
+    url("../assets/fonts/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Regular.woff2")
       format("woff2"),
     url("../assets/fonts/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Regular.woff")
       format("woff");
@@ -75,7 +82,8 @@ CSS
 
 @font-face {
   font-family: "Satoshi";
-  src: url("../assets/fonts/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Medium.woff2")
+  src:
+    url("../assets/fonts/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Medium.woff2")
       format("woff2"),
     url("../assets/fonts/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Medium.woff")
       format("woff");
@@ -85,7 +93,8 @@ CSS
 
 @font-face {
   font-family: "Satoshi";
-  src: url("../assets/fonts/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Bold.woff2")
+  src:
+    url("../assets/fonts/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Bold.woff2")
       format("woff2"),
     url("../assets/fonts/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Bold.woff")
       format("woff");
@@ -95,7 +104,8 @@ CSS
 
 @font-face {
   font-family: "Tanker";
-  src: url("../assets/fonts/Tanker_Complete/Tanker_Complete/Fonts/WEB/fonts/Tanker-Regular.woff2")
+  src:
+    url("../assets/fonts/Tanker_Complete/Tanker_Complete/Fonts/WEB/fonts/Tanker-Regular.woff2")
       format("woff2"),
     url("../assets/fonts/Tanker_Complete/Tanker_Complete/Fonts/WEB/fonts/Tanker-Regular.woff")
       format("woff");
@@ -119,7 +129,8 @@ CSS
   --font-base: 1rem;
   --font-xl: 2rem;
 
-  --font-mono: "adelle-mono", "Adelle Mono", "SF Mono", "Monaco", "Inconsolata",
+  --font-mono:
+    "adelle-mono", "Adelle Mono", "SF Mono", "Monaco", "Inconsolata",
     "Fira Code", monospace;
   --font-excon: "Excon", sans-serif;
   --font-pally: "Pally", serif;
@@ -144,7 +155,7 @@ body {
   line-height: 1.7;
   color: var(--main-theme-3);
   font-size: var(--font-sm);
-  height: 100vh;
+  min-height: 100vh;
   width: 100vw;
   text-transform: uppercase;
   display: flex;
@@ -205,7 +216,7 @@ h6 {
 .container {
   width: min(700px, 95vw);
   height: min(800px, 95vh);
-  aspect-ratio: 700 / 800;
+  max-height: 95vh;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -610,7 +621,9 @@ QUIZ SCREEN
   background: var(--main-theme-2);
   border: 2px solid var(--main-theme-3);
   box-sizing: border-box;
-  transition: 0.2s, border 0.2s;
+  transition:
+    0.2s,
+    border 0.2s;
   position: relative;
 }
 
@@ -1009,7 +1022,7 @@ RESULTS SCREEN
 }
 
 /* Hide footer on smaller devices to prevent overlap */
-@media (max-height: 900px) {
+@media (max-height: 900px), (max-width: 480px) {
   .universal-footer {
     display: none;
   }
