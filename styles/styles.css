@@ -209,6 +209,21 @@ body {
   touch-action: manipulation;
 }
 
+@media (max-width: 768px) {
+  body {
+    height: 100vh;
+    height: 100dvh;
+    min-height: 100vh;
+    min-height: 100dvh;
+    max-height: 100vh;
+    max-height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+}
+
 /* Mobile-first approach */
 @media (max-width: 768px) {
   body {
@@ -237,12 +252,14 @@ h2 {
 #personality-code {
   font-size: clamp(1.5rem, 2.2vw, 2rem);
   line-height: 1.2;
-  white-space: nowrap;
+  white-space: normal;
+  word-wrap: break-word;
   max-width: 100%;
   text-align: center;
   width: 100%;
   box-sizing: border-box;
   padding: 0 10px;
+  overflow-wrap: break-word;
 }
 h3 {
   font-size: var(--font-sm);
@@ -265,6 +282,19 @@ h6 {
   box-sizing: border-box;
 }
 
+html {
+  height: 100%;
+  overflow: hidden;
+}
+
+@media (max-width: 768px) {
+  html {
+    height: 100vh;
+    height: 100dvh;
+    overflow: hidden;
+  }
+}
+
 .container {
   width: min(700px, 95vw);
   height: min(800px, 90vh);
@@ -285,18 +315,16 @@ h6 {
 /* Mobile container - full viewport */
 @media (max-width: 768px) {
   .container {
-    width: 100vw;
-    height: 100vh;
-    height: 100dvh;
-    min-height: 100vh;
-    min-height: 100dvh;
-    max-height: 100vh;
-    max-height: 100dvh;
+    width: calc(100vw - 4px);
+    height: calc(100vh - 4px);
+    height: calc(100dvh - 4px);
+    min-height: calc(100vh - 4px);
+    min-height: calc(100dvh - 4px);
+    max-height: calc(100vh - 4px);
+    max-height: calc(100dvh - 4px);
     border-radius: 0;
-    border: none;
     margin: 0;
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow: hidden;
   }
 }
 
@@ -1263,7 +1291,8 @@ RESULTS SCREEN
   text-align: center;
   padding: var(--space-2) var(--space-4);
   background: transparent;
-  z-index: 1;
+  z-index: 100;
+  pointer-events: none;
 }
 
 .universal-footer p {
@@ -1390,9 +1419,15 @@ RESULTS SCREEN
   /* top: -50px; */
 }
 
-/* Hide footer on smaller devices to prevent overlap */
-@media (max-height: 900px), (max-width: 480px) {
+/* Footer always visible */
+@media (max-width: 480px) {
   .universal-footer {
-    display: none;
+    font-size: 0.7rem;
+    padding: var(--space-1) var(--space-2);
+    bottom: 5px;
+  }
+  
+  .universal-footer p {
+    font-size: 0.7rem;
   }
 }
