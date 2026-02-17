@@ -9,6 +9,18 @@ RESPONSIVE
 @media (max-width: 375px) {
   .container {
     border-width: 1px;
+    width: 97vw;
+    height: 97vh;
+    height: 97dvh;
+    min-height: 97vh;
+    min-height: 97dvh;
+    max-height: 97vh;
+    max-height: 97dvh;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
   }
 
   .quiz-navigation {

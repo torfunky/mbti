@@ -227,8 +227,9 @@ body {
 /* Mobile-first approach */
 @media (max-width: 768px) {
   body {
-    padding: 10px;
-    align-items: stretch;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
   }
 }
 
@@ -312,16 +313,16 @@ html {
   margin: 0;
 }
 
-/* Mobile container - full viewport */
+/* Mobile container - with background margin */
 @media (max-width: 768px) {
   .container {
-    width: calc(100vw - 4px);
-    height: calc(100vh - 4px);
-    height: calc(100dvh - 4px);
-    min-height: calc(100vh - 4px);
-    min-height: calc(100dvh - 4px);
-    max-height: calc(100vh - 4px);
-    max-height: calc(100dvh - 4px);
+    width: 96vw;
+    height: 96vh;
+    height: 96dvh;
+    min-height: 96vh;
+    min-height: 96dvh;
+    max-height: 96vh;
+    max-height: 96dvh;
     border-radius: 0;
     margin: 0;
     overflow: hidden;
@@ -1282,26 +1283,7 @@ RESULTS SCREEN
   /* top: -150px; */
 }
 
-/* Universal Footer */
-.universal-footer {
-  position: fixed;
-  bottom: 10px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  padding: var(--space-2) var(--space-4);
-  background: transparent;
-  z-index: 100;
-  pointer-events: none;
-}
 
-.universal-footer p {
-  margin: 0;
-  font-size: 0.8rem;
-  color: var(--main-theme-3);
-  opacity: 0.6;
-  font-weight: var(--font-normal);
-}
 
 /* All Types Screen */
 #all-types-screen.active {
@@ -1419,15 +1401,4 @@ RESULTS SCREEN
   /* top: -50px; */
 }
 
-/* Footer always visible */
-@media (max-width: 480px) {
-  .universal-footer {
-    font-size: 0.7rem;
-    padding: var(--space-1) var(--space-2);
-    bottom: 5px;
-  }
-  
-  .universal-footer p {
-    font-size: 0.7rem;
-  }
-}
+

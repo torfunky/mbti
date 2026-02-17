@@ -18,7 +18,8 @@ CSS
   --font-base: 1rem;
   --font-xl: 2rem;
 
-  --font-mono: "adelle-mono", "Adelle Mono", "SF Mono", "Monaco", "Inconsolata",
+  --font-mono:
+    "adelle-mono", "Adelle Mono", "SF Mono", "Monaco", "Inconsolata",
     "Fira Code", monospace;
 
   --font-normal: 400;
@@ -138,8 +139,8 @@ h6 {
 }
 
 #start-screen .subtitle {
-text-transform: none;
-color: red;
+  text-transform: none;
+  color: red;
 }
 
 #start-screen .btn {
@@ -443,7 +444,9 @@ QUIZ SCREEN
   background: var(--key-color-light);
   border: 2px solid transparent;
   box-sizing: border-box;
-  transition: 0.2s, border 0.2s;
+  transition:
+    0.2s,
+    border 0.2s;
   position: relative;
 }
 
@@ -641,24 +644,4 @@ RESULTS SCREEN
   white-space: nowrap;
   z-index: 3;
   line-height: 1;
-}
-
-/* Universal Footer */
-.universal-footer {
-  position: fixed;
-  bottom: 10px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  padding: var(--space-2) var(--space-4);
-  background: transparent;
-  z-index: 1;
-}
-
-.universal-footer p {
-  margin: 0;
-  font-size: 0.8rem;
-  color: var(--main-text);
-  opacity: 0.6;
-  font-weight: var(--font-normal);
 }
