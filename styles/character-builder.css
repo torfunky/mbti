@@ -1,5 +1,27 @@
 /* Character Builder Screen Specific CSS */
 
+.character-builder-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center content vertically */
+  padding: 20px;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 1;
+  isolation: isolate; /* Create stacking context */
+}
+
+@media (max-width: 768px) {
+  .character-builder-container {
+    padding: 15px;
+    overflow: visible;
+    min-height: 100%;
+  }
+}
+
+/* Remove all duplicate mobile styles - they are now handled above */
+
 .character-name-section {
   text-align: center;
   margin-bottom: 2rem;
@@ -13,9 +35,18 @@
   margin-bottom: 0.5rem;
   white-space: nowrap;
   font-size: clamp(1.5rem, 4vw, 2.8em);
-  min-width: 500px;
-  max-width: 500px;
-  /* background-color: red; */
+  min-width: auto;
+  max-width: 100%;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .character-name-section h1 {
+    font-size: clamp(1.2rem, 5vw, 1.8rem);
+    flex-wrap: wrap;
+    line-height: 1.2;
+    white-space: normal;
+  }
 }
 
 .name-input {
@@ -28,10 +59,17 @@
   color: var(--main-theme-3);
   padding: 0.2rem 0.5rem;
   width: 220px;
-  /* max-width: 220px; */
+  max-width: 100%;
   text-align: center;
   outline: none;
   transition: border-color 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .name-input {
+    width: 180px;
+    max-width: 80vw;
+  }
 }
 
 .name-input:focus {
@@ -42,14 +80,11 @@
 /* Color Picker Section */
 .color-picker-section {
   margin-bottom: 1.5rem;
-  display: flex;
-  justify-content: center;
 }
 
 .color-picker {
   display: flex;
   gap: 0.75rem;
-  justify-content: center;
   align-items: center;
 }
 
@@ -108,12 +143,22 @@
 /* Character Builder Interface */
 .character-builder-interface {
   gap: 1rem;
-  margin: 0 auto 2rem auto;
-  width: 360px;
+  margin: 0 auto 0.5rem auto;
+  width: 100%;
+  max-width: 360px;
   flex-wrap: wrap;
   display: flex;
   align-items: center;
-  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .character-builder-interface {
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto 0.5rem auto;
+    flex-direction: column;
+    gap: 1rem;
+  }
 }
 
 /* Arrow Controls */
@@ -121,7 +166,6 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  /* max-width: 200px; */
 }
 
 .feature-arrow {
@@ -138,7 +182,44 @@
   justify-content: center;
   cursor: pointer;
   transition: all 0.2s ease;
-  /* width: 40px; */
+  position: relative;
+  z-index: 10;
+  pointer-events: auto;
+}
+
+@media (max-width: 768px) {
+  /* Mobile: horizontal arrow layout */
+  .arrow-controls.left {
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
+    order: 1;
+  }
+
+  .arrow-controls.left .feature-arrow {
+    transform: rotate(90deg);
+  }
+
+  .character-preview {
+    order: 2;
+  }
+
+  .arrow-controls.right {
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
+    order: 3;
+  }
+
+  .arrow-controls.right .feature-arrow {
+    transform: rotate(90deg);
+  }
+
+  .feature-arrow {
+    width: 35px;
+    height: 35px;
+    font-size: 0.9rem;
+  }
 }
 
 .feature-arrow:hover {
@@ -164,6 +245,17 @@
   align-items: center;
   justify-content: center;
   margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .character-preview {
+    width: 220px;
+    height: 300px;
+    padding: 0.75rem;
+    margin: 0 auto;
+  }
 }
 
 .character-display {
@@ -175,145 +267,64 @@
   position: relative;
 }
 
+@media (max-width: 768px) {
+  .character-display,
+  .user-character-display {
+    width: 160px;
+    height: 160px;
+  }
+
+  .character-display .character-layer,
+  .user-character-display .character-layer {
+    width: 140px;
+  }
+}
+
 /* Character Builder Actions */
 .character-builder-actions {
   display: flex;
   gap: 1rem;
-  justify-content: center;
   flex-wrap: wrap;
+  margin-top: 1rem;
+  padding-bottom: 20px;
+  position: relative;
+  z-index: 50; /* Higher than other elements */
 }
 
-.character-builder-actions .btn {
-  min-width: 120px;
+@media (max-width: 768px) {
+  .character-builder-actions {
+    margin-top: 1rem;
+    gap: 0.75rem;
+    flex-direction: row;
+    padding-bottom: 30px;
+    z-index: 50;
+  }
+
+  .character-builder-actions .btn {
+    padding: 10px 20px;
+    font-size: 13px;
+    flex: 0 0 auto;
+    position: relative;
+    z-index: 50;
+    pointer-events: auto; /* Ensure clickable */
+  }
 }
 
 .btn.randomize {
   min-width: 15px;
-  /* max-width: 30px; */
   margin: 0px;
   padding: 5px;
-  border: 0px;
+  border: 2px solid var(--main-theme-3);
   color: var(--main-theme-3);
   background: var(--main-white);
   border-radius: 20px;
-  border: 2px solid var(--main-theme-3);
 }
 
 .btn.randomize:hover {
   background-color: var(--main-theme-1);
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .character-builder-container {
-    padding: 1rem 0.5rem;
-  }
-
-  .character-preview {
-    width: 180px;
-    height: 270px;
-    padding: 0.75rem;
-  }
-
-  .character-builder-interface {
-    gap: 0.75rem;
-  }
-
-  .feature-arrow {
-    width: 35px;
-    height: 35px;
-    font-size: 0.9rem;
-  }
-
-  .character-layers {
-    width: 150px;
-    height: 225px;
-  }
-
-  .character-layer {
-    width: 150px;
-    height: 225px;
-  }
-
-  .color-option {
-    width: 25px;
-    height: 25px;
-  }
-
-  .character-builder-actions {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .character-builder-actions .btn {
-    width: 100%;
-    max-width: 200px;
-  }
-}
-
-@media (max-width: 480px) {
-  .character-builder-interface {
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  /* Top arrows (prev) - point up */
-  .arrow-controls.left {
-    flex-direction: row;
-    justify-content: center;
-    gap: 2rem;
-    order: 1;
-  }
-
-  .arrow-controls.left .feature-arrow {
-    transform: rotate(90deg);
-    transform-origin: center;
-  }
-
-  /* Character display in middle */
-  .character-preview {
-    order: 2;
-  }
-
-  /* Bottom arrows (next) - point down */
-  .arrow-controls.right {
-    flex-direction: row;
-    justify-content: center;
-    gap: 2rem;
-    order: 3;
-  }
-
-  .arrow-controls.right .feature-arrow {
-    transform: rotate(-270deg);
-    transform-origin: center;
-  }
-
-  .character-layers {
-    width: 120px;
-    height: 180px;
-  }
-
-  .character-layer {
-    width: 120px;
-    height: 180px;
-  }
-
-  .character-preview {
-    width: 140px;
-    height: 210px;
-    padding: 0.5rem;
-  }
-
-  .color-option {
-    width: 20px;
-    height: 20px;
-  }
-
-  .name-input {
-    width: 100px;
-    max-width: 100px;
-  }
-}
+/* Remove duplicate mobile styles - handled in consolidated mobile section above */
 
 /* Animation for screen transitions */
 #character-builder-screen.screen {
@@ -325,6 +336,8 @@
 #character-builder-screen.screen.active {
   opacity: 1;
   transform: translateY(0);
+  display: flex;
+  flex-direction: column;
 }
 
 .character-composite {
@@ -348,6 +361,24 @@
   height: 300px;
   object-fit: contain;
   pointer-events: none;
+}
+
+/* Character builder specific centering */
+.character-builder-container .character-layer {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@media (max-width: 768px) {
+  .character-layers {
+    width: 160px;
+    height: 240px;
+  }
+
+  .character-layer {
+    width: 160px;
+    height: 240px;
+  }
 }
 
 /* Z-index layering for 6 features */
