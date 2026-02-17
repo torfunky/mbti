@@ -1,8 +1,11 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover"
+    />
     <title>mbti</title>
     <link rel="stylesheet" href="https://use.typekit.net/ytf2tfa.css" />
     <script
@@ -42,8 +45,8 @@
             </h1>
           </div>
 
-          <div class="color-picker-section">
-            <div class="color-picker">
+          <div class="color-picker-section flex-center">
+            <div class="color-picker justify-center">
               <div class="color-option" data-color="1"></div>
               <div class="color-option" data-color="2"></div>
               <div class="color-option active" data-color="3"></div>
@@ -53,7 +56,7 @@
             </div>
           </div>
 
-          <div class="character-builder-interface">
+          <div class="character-builder-interface justify-center">
             <div class="arrow-controls left">
               <button class="feature-arrow prev" data-feature="feature01Type">
                 ‹
@@ -101,12 +104,11 @@
             </div>
           </div>
 
-          <div class="character-builder-actions">
+          <div class="character-builder-actions justify-center">
             <button id="randomize-btn" class="btn randomize">
-              <ion-icon name="dice-outline" size="large"></ion-icon></button
-            ><br />
+              <ion-icon name="dice-outline" size="large"></ion-icon>
+            </button>
             <button id="back-to-start-btn" class="btn secondary">Back</button>
-
             <button id="start-quiz-btn" class="btn primary">Start Quiz</button>
           </div>
         </div>
